@@ -1,11 +1,10 @@
-import 'dart:ffi';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mokhtabary/utils/path_image.dart';
-import 'package:mokhtabary/widgets/card_lap.dart';
+import 'package:mokhtabary/widgets/cards_lap.dart';
 import 'package:mokhtabary/widgets/drawer.dart';
+// ignore: duplicate_import
 import 'package:firebase_auth/firebase_auth.dart';
 
 class PatientSCreen extends StatefulWidget {
@@ -31,9 +30,11 @@ class _PatientSCreenState extends State<PatientSCreen> {
       final user = _auth.currentUser;
       if (user != null) {
         logineduser = user;
+        // ignore: avoid_print
         print(logineduser.email);
       }
     } catch (e) {
+      // ignore: avoid_print
       print(e);
     }
   }
@@ -69,10 +70,13 @@ class _PatientSCreenState extends State<PatientSCreen> {
               height: 8,
             ),
             Column(
-              children: const [
-                CardLap(namelap: 'Med Lap', imagelap: PathImage.medlap),
-                CardLap(
-                    namelap: 'Med Lap', imagelap: 'assets/images/medlap.jpg'),
+              children: [
+                CardLaps(
+                  tittle: 'Med Lap',
+                  image: PathImage.medlap,
+                  cardClick: () {},
+                ),
+                CardLaps(tittle: 'Med Lap', image: PathImage.medlap),
               ],
             ),
           ],

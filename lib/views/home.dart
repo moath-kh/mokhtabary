@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:mokhtabary/theme/app_color.dart';
 import 'package:mokhtabary/views/afterlogin_screen.dart';
 import 'package:mokhtabary/views/rigester_screen.dart';
 
@@ -24,29 +23,27 @@ class _PageHomeState extends State<PageHome> {
         backgroundColor: Colors.orange[700],
       ),
       backgroundColor: Colors.white,
-      body: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            const HelloScreen(),
-            const SizedBox(
-              height: 30,
-            ),
-            Mybuuton(
-                tittle: 'Log in',
-                color: AppColor.maincolor,
-                onPressed: () {
-                  Navigator.pushNamed(context, LoginScreen.screenRoute);
-                }),
-            Mybuuton(
-                tittle: 'Rigster',
-                color: Colors.indigo,
-                onPressed: () {
-                  Navigator.pushNamed(context, Rigsteraition.screenRoute);
-                })
-          ],
-        ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          const HelloScreen(),
+          const SizedBox(
+            height: 30,
+          ),
+          Mybuuton(
+              tittle: 'Log in',
+              color: Colors.orange,
+              onPressed: () {
+                Navigator.pushNamed(context, LoginScreen.screenRoute);
+              }),
+          Mybuuton(
+              tittle: 'Rigster',
+              color: Colors.indigo,
+              onPressed: () {
+                Navigator.pushNamed(context, Rigsteraition.screenRoute);
+              })
+        ],
       ),
     );
   }

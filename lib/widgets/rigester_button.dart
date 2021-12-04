@@ -1,4 +1,3 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class RigsterButton extends StatelessWidget {
@@ -6,21 +5,31 @@ class RigsterButton extends StatelessWidget {
       {Key? key,
       this.scure = false,
       required this.onClick,
+      required this.onEmpty,
       required this.titlle,
       required this.icon,
       this.bord = TextInputType.emailAddress})
       : super(key: key);
   final Icon icon;
+
   final String titlle;
   final TextInputType bord;
   final void Function(String)? onClick;
+  final String? Function(String?) onEmpty;
   final bool scure;
+
+  get v => null;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(15),
       child: TextFormField(
+        onFieldSubmitted: (value) {
+          // ignore: avoid_print
+          print(value);
+        },
+        validator: onEmpty,
         keyboardType: bord,
         obscureText: scure,
         onChanged: onClick,

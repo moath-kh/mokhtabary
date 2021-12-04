@@ -1,8 +1,10 @@
 import 'dart:async';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import 'package:mokhtabary/views/home.dart';
+import 'package:mokhtabary/views/patient_screen.dart';
 import 'package:mokhtabary/widgets/hello.dart';
 
 class PageSplash extends StatefulWidget {
@@ -15,6 +17,7 @@ class PageSplash extends StatefulWidget {
 }
 
 class _PageSplashState extends State<PageSplash> {
+  final _auth = FirebaseAuth.instance;
   @override
   void initState() {
     super.initState();
@@ -22,7 +25,11 @@ class _PageSplashState extends State<PageSplash> {
       // var route = MaterialPageRoute(builder: (context) => PageHome());
       // Navigator.push(context, route);
       // Navigator.pushNamed(context, PageHome.id);
-      Navigator.pushReplacementNamed(context, PageHome.screenRoute);
+      Navigator.pushReplacementNamed(
+          context,
+          _auth.currentUser != null
+              ? PatientSCreen.screenRoute
+              : PageHome.screenRoute);
     });
   }
 

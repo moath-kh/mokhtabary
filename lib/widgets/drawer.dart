@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:mokhtabary/views/afterlogin_screen.dart';
 
 import 'custome_list.dart';
 
@@ -10,6 +12,8 @@ class ComponentDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // ignore: unused_local_variable
+    final _auth = FirebaseAuth.instance;
     return Drawer(
       child: Column(
         children: [
@@ -40,9 +44,30 @@ class ComponentDrawer extends StatelessWidget {
           const SizedBox(
             height: 10,
           ),
-          const CustomeTitle(title: 'Home', icon: (Icons.home)),
-          const CustomeTitle(title: 'Setting', icon: Icons.settings),
-          const CustomeTitle(title: "About", icon: Icons.help)
+          CustomeTitle(
+            title: 'Home',
+            icon: (Icons.home),
+            onClick: () {},
+          ),
+          CustomeTitle(
+            title: 'Setting',
+            icon: Icons.settings,
+            onClick: () {},
+          ),
+          CustomeTitle(
+            title: "About",
+            icon: Icons.help,
+            onClick: () {},
+          ),
+          CustomeTitle(
+            title: 'Logout',
+            icon: Icons.logout,
+            color: Colors.red,
+            onClick: () {
+              _auth.signOut();
+              Navigator.popAndPushNamed(context, LoginScreen.screenRoute);
+            },
+          )
         ],
       ),
     );

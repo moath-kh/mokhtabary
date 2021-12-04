@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 class KeyLang {
   static String appName = 'appName';
   static String selectLanguage = 'selectLanguage';

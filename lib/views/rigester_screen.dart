@@ -18,62 +18,83 @@ class _RigsteraitionState extends State<Rigsteraition> {
   late String email;
   late String password;
   late String phone;
-
+  var formkey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            const HelloScreen(),
-            const SizedBox(
-              height: 10,
-            ),
-            RigsterButton(
-              titlle: 'Enter your Email',
-              icon: const Icon(Icons.email),
-              onClick: (value) {
-                email = value;
-              },
-            ),
-            RigsterButton(
-              titlle: 'Number Phone',
-              icon: const Icon(
-                Icons.phone,
+        child: Form(
+          key: formkey,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              const HelloScreen(),
+              const SizedBox(
+                height: 10,
               ),
-              bord: TextInputType.phone,
-              onClick: (value) {
-                phone = value;
-              },
-            ),
-            RigsterButton(
-              bord: TextInputType.text,
-              titlle: 'Enter your Password',
-              icon: const Icon(Icons.lock),
-              scure: true,
-              onClick: (value) {
-                password = value;
-              },
-            ),
-            Mybuuton(
-              tittle: 'Rigster',
-              color: Colors.blue,
-              onPressed: () async {
-                try {
-                  final newUSer = await _auth.createUserWithEmailAndPassword(
-                    email: email,
-                    password: password,
-                  );
-                  Navigator.pushNamed(context, PatientSCreen.screenRoute);
-                } catch (e) {
-                  print(e);
-                }
-              },
-            )
-          ],
+              RigsterButton(
+                titlle: 'Enter your Email',
+                onEmpty: (value) {
+                  if (value!.isEmpty) {
+                    return 'Please Enter Your Email';
+                  }
+                  return null;
+                },
+                icon: const Icon(Icons.email),
+                onClick: (value) {
+                  email = value;
+                },
+              ),
+              RigsterButton(
+                titlle: 'Number Phone',
+                icon: const Icon(
+                  Icons.phone,
+                ),
+                bord: TextInputType.phone,
+                onEmpty: (value) {},
+                onClick: (value) {
+                  phone = value;
+                },
+              ),
+              RigsterButton(
+                bord: TextInputType.text,
+                titlle: 'Enter your Password',
+                icon: const Icon(Icons.lock),
+                scure: true,
+                onEmpty: (value) {
+                  if (value!.isEmpty) {
+                    return 'Please Enter Password ';
+                  }
+                  return null;
+                },
+                onClick: (value) {
+                  password = value;
+                },
+              ),
+              Mybuuton(
+                tittle: 'Rigster',
+                color: Colors.blue,
+                onPressed: () async {
+                  if (formkey.currentState!.validate()) {
+                    try {
+                      // ignore: unused_local_variable
+                      final newUSer =
+                          await _auth.createUserWithEmailAndPassword(
+                        email: email,
+                        password: password,
+                      );
+                      Navigator.pushNamed(context, PatientSCreen.screenRoute);
+                    } catch (e) {
+                      // ignore: avoid_print
+                      print(e);
+                    }
+                  }
+                },
+              )
+            ],
+          ),
         ),
       ),
     );
