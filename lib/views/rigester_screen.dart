@@ -18,6 +18,7 @@ class _RigsteraitionState extends State<Rigsteraition> {
   late String email;
   late String password;
   late String phone;
+  bool isPassword = true;
   var formkey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
@@ -62,7 +63,13 @@ class _RigsteraitionState extends State<Rigsteraition> {
                 bord: TextInputType.text,
                 titlle: 'Enter your Password',
                 icon: const Icon(Icons.lock),
-                scure: true,
+                scure: isPassword,
+                sicon: isPassword ? Icons.visibility : Icons.visibility_off,
+                suFF: () {
+                  setState(() {
+                    isPassword = !isPassword;
+                  });
+                },
                 onEmpty: (value) {
                   if (value!.isEmpty) {
                     return 'Please Enter Password ';

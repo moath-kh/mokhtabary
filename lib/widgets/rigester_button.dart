@@ -1,22 +1,26 @@
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class RigsterButton extends StatelessWidget {
-  const RigsterButton(
+  RigsterButton(
       {Key? key,
       this.scure = false,
       required this.onClick,
       required this.onEmpty,
       required this.titlle,
       required this.icon,
+      this.sicon,
+      this.suFF,
       this.bord = TextInputType.emailAddress})
       : super(key: key);
   final Icon icon;
-
   final String titlle;
   final TextInputType bord;
   final void Function(String)? onClick;
   final String? Function(String?) onEmpty;
   final bool scure;
+  final IconData? sicon;
+  void Function()? suFF;
 
   get v => null;
 
@@ -35,6 +39,10 @@ class RigsterButton extends StatelessWidget {
         onChanged: onClick,
         decoration: InputDecoration(
           prefixIcon: icon,
+          suffixIcon: IconButton(
+            onPressed: suFF,
+            icon: Icon(sicon),
+          ),
           hintText: titlle,
           contentPadding:
               const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
