@@ -26,6 +26,7 @@ class _NavScreenState extends State<NavScreen> {
         onClick: (value) {
           setState(() {
             index = value;
+            //
           });
         },
       ),
