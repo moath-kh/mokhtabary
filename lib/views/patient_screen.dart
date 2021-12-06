@@ -54,6 +54,7 @@ class _PatientSCreenState extends State<PatientSCreen> {
       ),
       drawer: const ComponentDrawer(),
       body: SingleChildScrollView(
+        physics: const ScrollPhysics(),
         child: Column(
           children: [
             SizedBox(
@@ -76,6 +77,7 @@ class _PatientSCreenState extends State<PatientSCreen> {
                   image: PathImage.medlap,
                   cardClick: () {},
                 ),
+                CardLaps(tittle: 'Med Lap', image: PathImage.medlap),
                 CardLaps(tittle: 'Med Lap', image: PathImage.medlap),
               ],
             ),

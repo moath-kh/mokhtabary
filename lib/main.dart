@@ -5,6 +5,7 @@ import 'package:mokhtabary/Language/Config/config-lang.dart';
 import 'package:mokhtabary/theme/custome_theme.dart';
 import 'package:mokhtabary/views/afterlogin_screen.dart';
 import 'package:mokhtabary/views/home.dart';
+import 'package:mokhtabary/views/navigation_page.dart';
 import 'package:mokhtabary/views/patient_screen.dart';
 import 'package:mokhtabary/views/rigester_screen.dart';
 import 'package:mokhtabary/views/screen_card.dart';
@@ -50,6 +51,7 @@ class MyApp extends StatelessWidget {
       routes: {
         PageSplash.id: (context) => const PageSplash(),
         PageHome.screenRoute: (context) => const PageHome(),
+        NavScreen.screenRoute: (context) => const NavScreen(),
         CardScreen.screenRoute: (context) => const CardScreen(),
         LoginScreen.screenRoute: (context) => const LoginScreen(),
         Rigsteraition.screenRoute: (context) => const Rigsteraition(),

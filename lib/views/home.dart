@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:mokhtabary/views/patient_screen.dart';
+import 'package:mokhtabary/views/navigation_page.dart';
 import 'package:mokhtabary/views/rigester_screen.dart';
 import 'package:mokhtabary/widgets/hello.dart';
 import 'package:mokhtabary/widgets/my_button.dart';
@@ -78,7 +78,7 @@ class _PageHomeState extends State<PageHome> {
               ),
               Mybuuton(
                 tittle: 'Login',
-                color: Colors.blue,
+                color: Colors.orange[700]!,
                 onPressed: () async {
                   if (formkey.currentState!.validate()) {
                     try {
@@ -87,7 +87,7 @@ class _PageHomeState extends State<PageHome> {
                       // ignore: unnecessary_null_comparison
                       if (user != null) {
                         Navigator.pushReplacementNamed(
-                            context, PatientSCreen.screenRoute);
+                            context, NavScreen.screenRoute);
                       }
                     } catch (e) {
                       // ignore: avoid_print
@@ -104,7 +104,7 @@ class _PageHomeState extends State<PageHome> {
                   }),*/
               Mybuuton(
                   tittle: 'Rigster',
-                  color: Colors.indigo,
+                  color: Colors.blue,
                   onPressed: () {
                     Navigator.pushNamed(context, Rigsteraition.screenRoute);
                   })

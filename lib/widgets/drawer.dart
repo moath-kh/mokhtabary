@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:mokhtabary/views/afterlogin_screen.dart';
 
+import 'package:mokhtabary/views/home.dart';
 import 'custome_list.dart';
 
 class ComponentDrawer extends StatelessWidget {
@@ -47,12 +47,9 @@ class ComponentDrawer extends StatelessWidget {
           CustomeTitle(
             title: 'Home',
             icon: (Icons.home),
-            onClick: () {},
-          ),
-          CustomeTitle(
-            title: 'Setting',
-            icon: Icons.settings,
-            onClick: () {},
+            onClick: () {
+              Navigator.pop(context);
+            },
           ),
           CustomeTitle(
             title: "About",
@@ -65,7 +62,7 @@ class ComponentDrawer extends StatelessWidget {
             color: Colors.red,
             onClick: () {
               _auth.signOut();
-              Navigator.popAndPushNamed(context, LoginScreen.screenRoute);
+              Navigator.pushReplacementNamed(context, PageHome.screenRoute);
             },
           )
         ],
