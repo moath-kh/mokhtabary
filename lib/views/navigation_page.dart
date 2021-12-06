@@ -13,7 +13,10 @@ class NavScreen extends StatefulWidget {
 
 class _NavScreenState extends State<NavScreen> {
   int index = 0;
-  final List<Widget> _pages = const [PatientSCreen(), EdittScreen()];
+  final List<Widget> _pages = const [
+    PatientSCreen(),
+    EdittScreen(),
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(

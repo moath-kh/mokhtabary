@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -31,10 +32,12 @@ class CardLaps extends StatelessWidget {
               // * Image
               Expanded(
                 flex: 4,
-                child: Image(
-                  image: AssetImage(image),
-                  width: double.infinity,
-                  fit: BoxFit.fill,
+                child: CachedNetworkImage(
+                  fit: BoxFit.fitHeight,
+                  imageUrl: image,
+                  placeholder: (context, url) =>
+                      const CircularProgressIndicator(),
+                  errorWidget: (context, url, error) => const Icon(Icons.error),
                 ),
               ),
               // * Title
@@ -42,7 +45,8 @@ class CardLaps extends StatelessWidget {
                 child: Center(
                   child: Text(
                     tittle,
-                    style: GoogleFonts.aBeeZee(fontWeight: FontWeight.bold),
+                    style: GoogleFonts.aBeeZee(
+                        fontWeight: FontWeight.bold, fontSize: 20),
                   ),
                 ),
               ),

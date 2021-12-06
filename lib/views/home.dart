@@ -1,5 +1,8 @@
+// ignore: implementation_imports
+import 'package:easy_localization/src/public_ext.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:mokhtabary/Language/generated/key-lang.dart';
 import 'package:mokhtabary/views/navigation_page.dart';
 import 'package:mokhtabary/views/rigester_screen.dart';
 import 'package:mokhtabary/widgets/hello.dart';
@@ -25,7 +28,7 @@ class _PageHomeState extends State<PageHome> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Mokhatbary'),
+        title: Text(KeyLang.appName.tr()),
         centerTitle: true,
         backgroundColor: Colors.orange[700],
       ),
