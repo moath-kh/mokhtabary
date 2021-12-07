@@ -1,11 +1,14 @@
+// ignore: implementation_imports
+import 'package:easy_localization/src/public_ext.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:mokhtabary/Language/generated/key-lang.dart';
 import 'package:mokhtabary/utils/path_image.dart';
-import 'package:mokhtabary/widgets/cards_lap.dart';
-import 'package:mokhtabary/widgets/drawer.dart';
+import 'package:mokhtabary/widgets/Drawer/drawer.dart';
 // ignore: duplicate_import
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:mokhtabary/widgets/CArdS/cards_lap.dart';
 
 class PatientSCreen extends StatefulWidget {
   static const String screenRoute = 'PatintScreen';
@@ -45,7 +48,7 @@ class _PatientSCreenState extends State<PatientSCreen> {
       appBar: AppBar(
         backgroundColor: Colors.amber[900],
         title: Text(
-          'Mokhtabary'.toUpperCase(),
+          KeyLang.appName.tr(),
           style: GoogleFonts.sora(color: Colors.yellowAccent),
         ),
         centerTitle: true,
@@ -60,7 +63,7 @@ class _PatientSCreenState extends State<PatientSCreen> {
             SizedBox(
               width: double.infinity,
               child: Text(
-                'Please Choose Lap :',
+                KeyLang.choselap.tr(),
                 style: GoogleFonts.lora(
                     fontSize: 30,
                     color: Colors.amber,

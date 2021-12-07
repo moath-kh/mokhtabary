@@ -1,6 +1,8 @@
+import 'package:easy_localization/src/public_ext.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:mokhtabary/views/patient_screen.dart';
+import 'package:mokhtabary/Language/generated/key-lang.dart';
+import 'package:mokhtabary/views/navigation_page.dart';
 import 'package:mokhtabary/widgets/hello.dart';
 import 'package:mokhtabary/widgets/my_button.dart';
 import 'package:mokhtabary/widgets/rigester_button.dart';
@@ -36,10 +38,10 @@ class _RigsteraitionState extends State<Rigsteraition> {
                 height: 10,
               ),
               RigsterButton(
-                titlle: 'Enter your Email',
+                titlle: KeyLang.email.tr(),
                 onEmpty: (value) {
                   if (value!.isEmpty) {
-                    return 'Please Enter Your Email';
+                    return KeyLang.pemail.tr();
                   }
                   return null;
                 },
@@ -61,7 +63,7 @@ class _RigsteraitionState extends State<Rigsteraition> {
               ),
               RigsterButton(
                 bord: TextInputType.text,
-                titlle: 'Enter your Password',
+                titlle: KeyLang.pass.tr(),
                 icon: const Icon(Icons.lock),
                 scure: isPassword,
                 sicon: isPassword ? Icons.visibility : Icons.visibility_off,
@@ -72,7 +74,7 @@ class _RigsteraitionState extends State<Rigsteraition> {
                 },
                 onEmpty: (value) {
                   if (value!.isEmpty) {
-                    return 'Please Enter Password ';
+                    return KeyLang.ppass.tr();
                   }
                   return null;
                 },
@@ -81,7 +83,7 @@ class _RigsteraitionState extends State<Rigsteraition> {
                 },
               ),
               Mybuuton(
-                tittle: 'Rigster',
+                tittle: KeyLang.rigst.tr(),
                 color: Colors.blue,
                 onPressed: () async {
                   if (formkey.currentState!.validate()) {
@@ -92,7 +94,8 @@ class _RigsteraitionState extends State<Rigsteraition> {
                         email: email,
                         password: password,
                       );
-                      Navigator.pushNamed(context, PatientSCreen.screenRoute);
+                      Navigator.pushReplacementNamed(
+                          context, NavScreen.screenRoute);
                     } catch (e) {
                       // ignore: avoid_print
                       print(e);

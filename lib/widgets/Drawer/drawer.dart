@@ -1,9 +1,12 @@
+// ignore: implementation_imports
+import 'package:easy_localization/src/public_ext.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-
+import 'package:mokhtabary/Language/generated/key-lang.dart';
 import 'package:mokhtabary/views/home.dart';
-import 'custome_list.dart';
+import '../custome_list.dart';
+import 'alert_lang.dart';
 
 class ComponentDrawer extends StatelessWidget {
   const ComponentDrawer({
@@ -45,19 +48,32 @@ class ComponentDrawer extends StatelessWidget {
             height: 10,
           ),
           CustomeTitle(
-            title: 'Home',
+            title: KeyLang.home.tr(),
             icon: (Icons.home),
             onClick: () {
               Navigator.pop(context);
             },
           ),
           CustomeTitle(
-            title: "About",
+            title: KeyLang.language.tr(),
+            icon: Icons.language,
+            onClick: () {
+              showDialog(
+                barrierDismissible: false,
+                context: context,
+                builder: (context) {
+                  return const ALertDialogDrawer();
+                },
+              );
+            },
+          ),
+          CustomeTitle(
+            title: KeyLang.type.tr(),
             icon: Icons.help,
             onClick: () {},
           ),
           CustomeTitle(
-            title: 'Logout',
+            title: KeyLang.logout.tr(),
             icon: Icons.logout,
             color: Colors.red,
             onClick: () {

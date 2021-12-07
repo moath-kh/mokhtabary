@@ -6,5 +6,15 @@
     "english": "English",
     "arabic": "Arabic",
     "cancel": "cancel",
-    "type": "Type"
+    "type": "About",
+    "Please Choose Lap :": "Please choose lap :",
+    "home": "Home",
+    "logout": "Log Out",
+    "helo": "Hello in Mokhtabary",
+    "login": "Log in",
+    "pass": "Password",
+    "rigst": "register",
+    "email": "Enter your Email",
+    "pemail": "Please Enter your Email",
+    "ppass": "Please Enter your Password"
 }

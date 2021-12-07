@@ -9,4 +9,14 @@ class KeyLang {
   static String arabic = 'arabic';
   static String cancel = 'cancel';
   static String type = 'type';
+  static String choselap = 'Please Choose Lap :';
+  static String home = 'home';
+  static String logout = 'logout';
+  static String helo = 'helo';
+  static String pass = 'pass';
+  static String email = 'email';
+  static String rigst = 'rigst';
+  static String login = 'login';
+  static String pemail = 'pemail';
+  static String ppass = 'ppass';
 }

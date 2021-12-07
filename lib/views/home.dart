@@ -45,12 +45,12 @@ class _PageHomeState extends State<PageHome> {
                 height: 30,
               ),
               RigsterButton(
-                titlle: 'Enter youe Email',
+                titlle: KeyLang.email.tr(),
                 bord: TextInputType.emailAddress,
                 icon: const Icon(Icons.email),
                 onEmpty: (value) {
                   if (value!.isEmpty) {
-                    return 'Please Enter Your Email';
+                    return KeyLang.pemail.tr();
                   }
                   return null;
                 },
@@ -59,7 +59,7 @@ class _PageHomeState extends State<PageHome> {
                 },
               ),
               RigsterButton(
-                titlle: 'Password',
+                titlle: KeyLang.pass.tr(),
                 icon: const Icon(Icons.lock),
                 sicon: isPassword ? Icons.visibility : Icons.visibility_off,
                 suFF: () {
@@ -71,7 +71,7 @@ class _PageHomeState extends State<PageHome> {
                 scure: isPassword,
                 onEmpty: (value) {
                   if (value!.isEmpty) {
-                    return 'Please Enter Password';
+                    return KeyLang.ppass.tr();
                   }
                   return null;
                 },
@@ -80,7 +80,7 @@ class _PageHomeState extends State<PageHome> {
                 },
               ),
               Mybuuton(
-                tittle: 'Login',
+                tittle: KeyLang.login.tr(),
                 color: Colors.orange[700]!,
                 onPressed: () async {
                   if (formkey.currentState!.validate()) {
@@ -106,7 +106,7 @@ class _PageHomeState extends State<PageHome> {
                     Navigator.pushNamed(context, LoginScreen.screenRoute);
                   }),*/
               Mybuuton(
-                  tittle: 'Rigster',
+                  tittle: KeyLang.rigst.tr(),
                   color: Colors.blue,
                   onPressed: () {
                     Navigator.pushNamed(context, Rigsteraition.screenRoute);
