@@ -9,6 +9,7 @@ class RigsterButton extends StatelessWidget {
       required this.onEmpty,
       required this.titlle,
       required this.icon,
+      this.onsubmit,
       this.sicon,
       this.suFF,
       this.bord = TextInputType.emailAddress})
@@ -17,6 +18,7 @@ class RigsterButton extends StatelessWidget {
   final String titlle;
   final TextInputType bord;
   final void Function(String)? onClick;
+  final void Function(String)? onsubmit;
   final String? Function(String?) onEmpty;
   final bool scure;
   final IconData? sicon;
@@ -29,10 +31,7 @@ class RigsterButton extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(15),
       child: TextFormField(
-        onFieldSubmitted: (value) {
-          // ignore: avoid_print
-          print(value);
-        },
+        onFieldSubmitted: onsubmit,
         validator: onEmpty,
         keyboardType: bord,
         obscureText: scure,

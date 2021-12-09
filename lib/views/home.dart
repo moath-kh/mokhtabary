@@ -68,6 +68,7 @@ class _PageHomeState extends State<PageHome> {
                   });
                 },
                 bord: TextInputType.visiblePassword,
+                onsubmit: (value) {},
                 scure: isPassword,
                 onEmpty: (value) {
                   if (value!.isEmpty) {
@@ -110,7 +111,34 @@ class _PageHomeState extends State<PageHome> {
                   color: Colors.blue,
                   onPressed: () {
                     Navigator.pushNamed(context, Rigsteraition.screenRoute);
-                  })
+                  }),
+              const SizedBox(
+                height: 15,
+              ),
+              Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Row(
+                  children: [
+                    Text(
+                      KeyLang.loglap.tr(),
+                      style: const TextStyle(
+                          fontWeight: FontWeight.w700,
+                          color: Colors.red,
+                          fontSize: 20),
+                    ),
+                    const SizedBox(
+                      width: 5,
+                    ),
+                    TextButton(
+                        onPressed: () {},
+                        child: Text(
+                          KeyLang.login.tr(),
+                          style: const TextStyle(
+                              fontWeight: FontWeight.w700, fontSize: 20),
+                        ))
+                  ],
+                ),
+              )
             ],
           ),
         ),

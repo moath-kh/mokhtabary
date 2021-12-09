@@ -19,4 +19,5 @@ class KeyLang {
   static String login = 'login';
   static String pemail = 'pemail';
   static String ppass = 'ppass';
+  static String loglap = 'loglap';
 }

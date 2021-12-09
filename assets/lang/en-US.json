@@ -16,5 +16,6 @@
     "rigst": "register",
     "email": "Enter your Email",
     "pemail": "Please Enter your Email",
-    "ppass": "Please Enter your Password"
+    "ppass": "Please Enter your Password",
+    "loglap": "Are you a lab ?"
 }
