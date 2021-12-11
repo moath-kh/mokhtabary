@@ -17,5 +17,8 @@
     "email": "Enter your Email",
     "pemail": "Please Enter your Email",
     "ppass": "Please Enter your Password",
-    "loglap": "Are you a lab ?"
+    "loglap": "Are you a lab ?",
+    "username": "User Name",
+    "pusername": "Enter User Name",
+    "epass": "Enter a 6-digit Password"
 }

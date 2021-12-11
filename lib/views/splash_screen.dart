@@ -1,10 +1,8 @@
 import 'dart:async';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
 import 'package:mokhtabary/views/home.dart';
-import 'package:mokhtabary/views/patient_screen.dart';
+import 'package:mokhtabary/views/navigation_page.dart';
 import 'package:mokhtabary/widgets/hello.dart';
 
 class PageSplash extends StatefulWidget {
@@ -28,7 +26,7 @@ class _PageSplashState extends State<PageSplash> {
       Navigator.pushReplacementNamed(
           context,
           _auth.currentUser != null
-              ? PatientSCreen.screenRoute
+              ? NavScreen.screenRoute
               : PageHome.screenRoute);
     });
   }

@@ -21,6 +21,7 @@ class _PageHomeState extends State<PageHome> {
   final _auth = FirebaseAuth.instance;
   late String email;
   late String password;
+  String error = '';
   bool isPassword = true;
   var formkey = GlobalKey<FormState>();
   @override
@@ -86,16 +87,19 @@ class _PageHomeState extends State<PageHome> {
                 onPressed: () async {
                   if (formkey.currentState!.validate()) {
                     try {
-                      final user = _auth.signInWithEmailAndPassword(
-                          email: email, password: password);
+                      dynamic newUSer = await _auth.signInWithEmailAndPassword(
+                        email: email,
+                        password: password,
+                      );
                       // ignore: unnecessary_null_comparison
-                      if (user != null) {
-                        Navigator.pushReplacementNamed(
-                            context, NavScreen.screenRoute);
+                      if (newUSer == null) {
+                        setState(() => error = 'oanpodinapvnakm');
                       }
+                      Navigator.pushReplacementNamed(
+                          context, NavScreen.screenRoute);
                     } catch (e) {
                       // ignore: avoid_print
-                      print(e);
+                      print(e.toString());
                     }
                   }
                 },
@@ -106,6 +110,7 @@ class _PageHomeState extends State<PageHome> {
                   onPressed: () {
                     Navigator.pushNamed(context, LoginScreen.screenRoute);
                   }),*/
+              //Button Rigster
               Mybuuton(
                   tittle: KeyLang.rigst.tr(),
                   color: Colors.blue,
@@ -115,6 +120,7 @@ class _PageHomeState extends State<PageHome> {
               const SizedBox(
                 height: 15,
               ),
+              //Button Lap
               Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: Row(
@@ -146,3 +152,57 @@ class _PageHomeState extends State<PageHome> {
     );
   }
 }
+
+
+
+/*   try {
+                      final user = _auth.signInWithEmailAndPassword(
+                          email: email, password: password);
+                      // ignore: unnecessary_null_comparison
+                      if (user != null) {
+                        Navigator.pushReplacementNamed(
+                            context, NavScreen.screenRoute);
+                      }
+                    } catch (e) {
+                      // ignore: avoid_print
+                      print(e);
+                    }*/
+
+
+                    /*async {
+                  if (formkey.currentState!.validate()) {
+                    try {
+                      dynamic newUSer =
+                          await _auth.createUserWithEmailAndPassword(
+                        email: email,
+                        password: password,
+                      );
+                      // ignore: unnecessary_null_comparison
+                      if (newUSer == null) {
+                        setState(() => error = 'oanpodinapvnakm');
+                      }
+                      Navigator.pushReplacementNamed(
+                          context, NavScreen.screenRoute);
+                    } catch (e) {
+                      // ignore: avoid_print
+                      print(e.toString());
+                    }
+                  }
+                }, */
+
+                /*async {
+                  if (formkey.currentState!.validate()) {
+                    FirebaseAuth.instance
+                        .signInWithEmailAndPassword(
+                            email: email, password: password)
+                        .then((value) {
+                      print(email);
+                      print(password);
+                    }).catchError((error) {
+                      Text(
+                        error,
+                        style: const TextStyle(color: Colors.red, fontSize: 20),
+                      );
+                    });
+                  }
+                }, */
