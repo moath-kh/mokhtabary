@@ -3,9 +3,13 @@ import 'package:easy_localization/src/public_ext.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:mokhtabary/Language/generated/key-lang.dart';
+// ignore: unused_import
+import 'package:mokhtabary/services/auth.dart';
 import 'package:mokhtabary/views/navigation_page.dart';
 import 'package:mokhtabary/views/rigester_screen.dart';
 import 'package:mokhtabary/widgets/hello.dart';
+// ignore: unused_import
+import 'package:mokhtabary/widgets/loading.dart';
 import 'package:mokhtabary/widgets/my_button.dart';
 import 'package:mokhtabary/widgets/rigester_button.dart';
 
@@ -18,11 +22,13 @@ class PageHome extends StatefulWidget {
 
 class _PageHomeState extends State<PageHome> {
   // ignore: unused_field
-  final _auth = FirebaseAuth.instance;
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  // final Autthservic _authh = Autthservic();
   late String email;
   late String password;
   String error = '';
   bool isPassword = true;
+
   var formkey = GlobalKey<FormState>();
   @override
   @override
@@ -86,6 +92,7 @@ class _PageHomeState extends State<PageHome> {
                 color: Colors.orange[700]!,
                 onPressed: () async {
                   if (formkey.currentState!.validate()) {
+                    setState(() {});
                     try {
                       dynamic newUSer = await _auth.signInWithEmailAndPassword(
                         email: email,
@@ -93,7 +100,10 @@ class _PageHomeState extends State<PageHome> {
                       );
                       // ignore: unnecessary_null_comparison
                       if (newUSer == null) {
-                        setState(() => error = 'oanpodinapvnakm');
+                        setState(() {
+                          //
+                          error = 'oanpodinapvnakm';
+                        });
                       }
                       Navigator.pushReplacementNamed(
                           context, NavScreen.screenRoute);
@@ -153,8 +163,6 @@ class _PageHomeState extends State<PageHome> {
   }
 }
 
-
-
 /*   try {
                       final user = _auth.signInWithEmailAndPassword(
                           email: email, password: password);
@@ -168,8 +176,7 @@ class _PageHomeState extends State<PageHome> {
                       print(e);
                     }*/
 
-
-                    /*async {
+/*async {
                   if (formkey.currentState!.validate()) {
                     try {
                       dynamic newUSer =
@@ -190,7 +197,7 @@ class _PageHomeState extends State<PageHome> {
                   }
                 }, */
 
-                /*async {
+/*async {
                   if (formkey.currentState!.validate()) {
                     FirebaseAuth.instance
                         .signInWithEmailAndPassword(
@@ -206,3 +213,20 @@ class _PageHomeState extends State<PageHome> {
                     });
                   }
                 }, */
+
+/*
+                 try {
+                      dynamic newUSer = await _auth.signInWithEmailAndPassword(
+                        email: email,
+                        password: password,
+                      );
+                      // ignore: unnecessary_null_comparison
+                      if (newUSer == null) {
+                        setState(() => error = 'oanpodinapvnakm');
+                      }
+                      Navigator.pushReplacementNamed(
+                          context, NavScreen.screenRoute);
+                    } catch (e) {
+                      // ignore: avoid_print
+                      print(e.toString());
+                    } */

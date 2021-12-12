@@ -1,5 +1,4 @@
 // ignore: implementation_imports
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 // ignore: implementation_imports
 import 'package:easy_localization/src/public_ext.dart';
@@ -22,6 +21,7 @@ class Rigsteraition extends StatefulWidget {
 
 class _RigsteraitionState extends State<Rigsteraition> {
   final _auth = FirebaseAuth.instance;
+  //final Autthservic _auth = Autthservic();
   late String email;
   late String password;
   late String phone;
@@ -148,6 +148,14 @@ class _RigsteraitionState extends State<Rigsteraition> {
                 },
               ),
               const SizedBox(height: 20),
+
+              Text(
+                error,
+                style: const TextStyle(
+                  color: Colors.red,
+                  fontSize: 50,
+                ),
+              )
             ],
           ),
         ),
@@ -204,3 +212,5 @@ class _RigsteraitionState extends State<Rigsteraition> {
       // ignore: avoid_print
       print(error);
     }) */
+
+    /*  */
