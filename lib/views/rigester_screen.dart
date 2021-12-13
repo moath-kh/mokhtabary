@@ -6,6 +6,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:mokhtabary/Language/generated/key-lang.dart';
 import 'package:mokhtabary/models/rigst_model.dart';
+import 'package:mokhtabary/services/daatabase.dart';
 import 'package:mokhtabary/views/navigation_page.dart';
 import 'package:mokhtabary/widgets/hello.dart';
 import 'package:mokhtabary/widgets/my_button.dart';
@@ -29,6 +30,7 @@ class _RigsteraitionState extends State<Rigsteraition> {
   late String uid;
   String error = '';
   bool isPassword = true;
+  bool loading = false;
   // ignore: non_constant_identifier_names
   void Usercreate({
     required String phone,
@@ -135,6 +137,9 @@ class _RigsteraitionState extends State<Rigsteraition> {
                       email: email,
                       password: password,
                     );
+                    User user = newUSer.user;
+                    await DataBaseService(uid: user.uid)
+                        .UpdateUserData(phone, name, email);
                     // ignore: unnecessary_null_comparison
                     if (newUSer == null) {
                       setState(() => error = 'oanpodinapvnakm');
@@ -144,11 +149,12 @@ class _RigsteraitionState extends State<Rigsteraition> {
                   } catch (e) {
                     // ignore: avoid_print
                     print(e.toString());
+                    // ignore: avoid_returning_null_for_void
+                    return null;
                   }
                 },
               ),
               const SizedBox(height: 20),
-
               Text(
                 error,
                 style: const TextStyle(

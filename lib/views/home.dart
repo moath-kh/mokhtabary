@@ -98,12 +98,10 @@ class _PageHomeState extends State<PageHome> {
                         email: email,
                         password: password,
                       );
-                      // ignore: unnecessary_null_comparison
                       if (newUSer == null) {
-                        setState(() {
-                          //
-                          error = 'oanpodinapvnakm';
-                        });
+                        setState(() =>
+                            // ignore: avoid_print
+                            print('akjncksncalkdkkdkkdkdkkslk'));
                       }
                       Navigator.pushReplacementNamed(
                           context, NavScreen.screenRoute);
@@ -129,6 +127,10 @@ class _PageHomeState extends State<PageHome> {
                   }),
               const SizedBox(
                 height: 15,
+              ),
+              Text(
+                error,
+                style: const TextStyle(color: Colors.red, fontSize: 50),
               ),
               //Button Lap
               Padding(
