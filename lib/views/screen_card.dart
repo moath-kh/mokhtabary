@@ -159,6 +159,7 @@ class _CardScreenState extends State<CardScreen> {
                             },
                             mini: true,
                             child: const Icon(Icons.remove),
+                            heroTag: 'age--',
                           ),
                           const SizedBox(
                             width: 20,
@@ -171,6 +172,7 @@ class _CardScreenState extends State<CardScreen> {
                             },
                             mini: true,
                             child: const Icon(Icons.add),
+                            heroTag: 'age++',
                           )
                         ],
                       )

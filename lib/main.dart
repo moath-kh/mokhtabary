@@ -7,10 +7,12 @@ import 'package:mokhtabary/views/afterlogin_screen.dart';
 import 'package:mokhtabary/views/home.dart';
 import 'package:mokhtabary/views/navigation_page.dart';
 import 'package:mokhtabary/views/patient_screen.dart';
+import 'package:mokhtabary/views/location_screen.dart';
 import 'package:mokhtabary/views/rigester_screen.dart';
 import 'package:mokhtabary/views/screen_card.dart';
 import 'package:mokhtabary/views/splash_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:mokhtabary/views/test_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -38,7 +40,6 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Mokhtabary',
       debugShowCheckedModeBanner: false,
-
       localizationsDelegates: context.localizationDelegates,
       supportedLocales: context.supportedLocales,
       locale: context.locale,
@@ -56,6 +57,10 @@ class MyApp extends StatelessWidget {
         LoginScreen.screenRoute: (context) => const LoginScreen(),
         Rigsteraition.screenRoute: (context) => const Rigsteraition(),
         PatientSCreen.screenRoute: (context) => const PatientSCreen(),
+        TestScreen.screenRoute: (context) => const TestScreen(),
+        AfterTest.screenRoute: (context) => const AfterTest(
+              tittle: '',
+            ),
       },
     );
   }

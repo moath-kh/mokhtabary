@@ -20,5 +20,14 @@
     "loglap": "Are you a lab ?",
     "username": "User Name",
     "pusername": "Enter User Name",
-    "epass": "Enter a 6-digit Password"
+    "epass": "Enter a 6-digit Password",
+    "cbc": "CBC",
+    "sugret": "Sugre Test",
+    "kft": "KFT",
+    "lft": "LFT",
+    "b12": "Vitamin B-12",
+    "covid": "Covid-19",
+    "d": "Vitamin D",
+    "ur": "Urinalysis Test",
+    "ephone": "Enter a 10-digit Number Phone"
 }

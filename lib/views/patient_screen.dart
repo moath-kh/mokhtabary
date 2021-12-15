@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mokhtabary/Language/generated/key-lang.dart';
 import 'package:mokhtabary/utils/path_image.dart';
+import 'package:mokhtabary/views/test_screen.dart';
 import 'package:mokhtabary/widgets/Drawer/drawer.dart';
 // ignore: duplicate_import
 import 'package:firebase_auth/firebase_auth.dart';
@@ -53,23 +54,22 @@ class _PatientSCreenState extends State<PatientSCreen> {
         ),
         centerTitle: true,
         elevation: 2,
-        //  leading: ,
       ),
       drawer: const ComponentDrawer(),
       body: SingleChildScrollView(
         physics: const ScrollPhysics(),
         child: Column(
           children: [
-            SizedBox(
-              width: double.infinity,
-              child: Text(
-                KeyLang.choselap.tr(),
-                style: GoogleFonts.lora(
-                    fontSize: 30,
-                    color: Colors.amber,
-                    fontWeight: FontWeight.bold),
-              ),
-            ),
+            // SizedBox(
+            //   width: double.infinity,
+            //   child: Text(
+            //     KeyLang.choselap.tr(),
+            //     style: GoogleFonts.lora(
+            //         fontSize: 30,
+            //         color: Colors.amber,
+            //         fontWeight: FontWeight.bold),
+            //   ),
+            // ),
             const SizedBox(
               height: 8,
             ),
@@ -78,7 +78,9 @@ class _PatientSCreenState extends State<PatientSCreen> {
                 CardLaps(
                   tittle: 'Med Lap',
                   image: PathImage.medlap,
-                  cardClick: () {},
+                  cardClick: () {
+                    Navigator.pushNamed(context, TestScreen.screenRoute);
+                  },
                 ),
                 CardLaps(tittle: 'Med Lap', image: PathImage.medlap),
                 CardLaps(tittle: 'Med Lap', image: PathImage.medlap),

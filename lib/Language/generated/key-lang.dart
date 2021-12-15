@@ -23,4 +23,13 @@ class KeyLang {
   static String username = 'username';
   static String epass = 'epass';
   static String pusername = 'pusername';
+  static String cbc = 'cbc';
+  static String sugret = 'sugret';
+  static String kft = 'kft';
+  static String lft = 'lft';
+  static String b12 = 'b12';
+  static String covid = 'covid';
+  static String d = 'd';
+  static String ur = 'ur';
+  static String ephone = 'ephone';
 }

@@ -103,7 +103,8 @@ class _RigsteraitionState extends State<Rigsteraition> {
                   Icons.phone,
                 ),
                 bord: TextInputType.phone,
-                onEmpty: (value) {},
+                onEmpty: (value) =>
+                    value!.length < 10 ? KeyLang.ephone.tr() : null,
                 onClick: (value) {
                   phone = value;
                 },
@@ -138,8 +139,11 @@ class _RigsteraitionState extends State<Rigsteraition> {
                       password: password,
                     );
                     User user = newUSer.user;
-                    await DataBaseService(uid: user.uid)
-                        .UpdateUserData(phone, name, email);
+                    await DataBaseService(uid: user.uid).UpdateUserData(
+                      phone,
+                      name,
+                      email,
+                    );
                     // ignore: unnecessary_null_comparison
                     if (newUSer == null) {
                       setState(() => error = 'oanpodinapvnakm');
