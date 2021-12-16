@@ -138,12 +138,14 @@ class _RigsteraitionState extends State<Rigsteraition> {
                       email: email,
                       password: password,
                     );
-                    User user = newUSer.user;
-                    await DataBaseService(uid: user.uid).UpdateUserData(
-                      phone,
-                      name,
-                      email,
-                    );
+                    if (newUSer != null) {
+                      User user = newUSer.user;
+                      await DataBaseService(uid: user.uid).UpdateUserData(
+                        phone,
+                        name,
+                        email,
+                      );
+                    }
                     // ignore: unnecessary_null_comparison
                     if (newUSer == null) {
                       setState(() => error = 'oanpodinapvnakm');

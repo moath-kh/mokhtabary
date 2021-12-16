@@ -28,17 +28,17 @@ class _AfterTestState extends State<AfterTest> {
   late List<Marker> marker = [
     const Marker(
       markerId: MarkerId('Your Location'),
-      infoWindow: InfoWindow(title: 'Medd Lap'),
+      infoWindow: InfoWindow(title: 'Med Lap'),
       position: LatLng(30.1957514, 35.7360254),
     ),
     const Marker(
       markerId: MarkerId(' Location 2 '),
-      infoWindow: InfoWindow(title: 'Medd Lap'),
+      infoWindow: InfoWindow(title: 'Med Lap'),
       position: LatLng(30.585164, 36.238414),
     ),
     const Marker(
       markerId: MarkerId(' Location  3'),
-      infoWindow: InfoWindow(title: 'Medd Lap'),
+      infoWindow: InfoWindow(title: 'Byo Lap'),
       position: LatLng(35.00778, 36.83113),
     ), //35.00778 , 36.83113
   ];
@@ -89,6 +89,7 @@ class _AfterTestState extends State<AfterTest> {
         //     " " +
         //     _location.longitude.toString());
         location.onLocationChanged.listen((LocationData currentLocation) {
+          // ignore: avoid_print
           print(' Location' +
               currentLocation.latitude.toString() +
               " " +
