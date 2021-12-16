@@ -32,4 +32,7 @@ class KeyLang {
   static String d = 'd';
   static String ur = 'ur';
   static String ephone = 'ephone';
+  static String age = 'age';
+  static String page = 'page';
+  static String phone = 'phone';
 }

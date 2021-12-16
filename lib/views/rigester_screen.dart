@@ -80,7 +80,7 @@ class _RigsteraitionState extends State<Rigsteraition> {
                   return null;
                 },
                 titlle: KeyLang.username.tr(),
-                icon: const Icon(Icons.people),
+                icon: const Icon(Icons.person_sharp),
               ),
               //Email
               RigsterButton(

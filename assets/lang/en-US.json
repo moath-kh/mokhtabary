@@ -16,6 +16,7 @@
     "rigst": "register",
     "email": "Enter your Email",
     "pemail": "Please Enter your Email",
+    "page": "Please Enter Age",
     "ppass": "Please Enter your Password",
     "loglap": "Are you a lab ?",
     "username": "User Name",
@@ -28,6 +29,8 @@
     "b12": "Vitamin B-12",
     "covid": "Covid-19",
     "d": "Vitamin D",
+    "age": " Age",
+    "phone": "Number Phone",
     "ur": "Urinalysis Test",
     "ephone": "Enter a 10-digit Number Phone"
 }

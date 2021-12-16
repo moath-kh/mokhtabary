@@ -1,4 +1,6 @@
 import 'dart:async';
+// ignore: implementation_imports
+import 'package:easy_localization/src/public_ext.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -7,6 +9,7 @@ import 'package:location/location.dart';
 
 // ignore: unused_import
 import 'package:mokhtabary/Language/generated/key-lang.dart';
+import 'package:mokhtabary/widgets/rigester_button.dart';
 
 class AfterTest extends StatefulWidget {
   static const String screenRoute = 'AfterTstsSccreen';
@@ -20,20 +23,32 @@ class AfterTest extends StatefulWidget {
 class _AfterTestState extends State<AfterTest> {
   final Completer<GoogleMapController> _controller = Completer();
   // ignore: prefer_const_constructors
-  static final CameraPosition _kGooglePlex = CameraPosition(
-    target: const LatLng(30.194933, 35.737234),
-    zoom: 14.4746,
-  );
+  late String email;
+  late String password;
+  late String phone;
+  late String name;
+  late String uid;
+  String error = '';
+  bool isPassword = true;
+  bool loading = false;
+  var formkey = GlobalKey<FormState>();
+  static CameraPosition get _kGooglePlex => const CameraPosition(
+        target: LatLng(30.194933, 35.737234),
+        zoom: 14.4746,
+      );
 
   late List<Marker> marker = [
     const Marker(
+      rotation: 1,
       markerId: MarkerId('Your Location'),
       infoWindow: InfoWindow(title: 'Med Lap'),
       position: LatLng(30.1957514, 35.7360254),
     ),
     const Marker(
       markerId: MarkerId(' Location 2 '),
-      infoWindow: InfoWindow(title: 'Med Lap'),
+      infoWindow: InfoWindow(
+        title: 'Med Lap',
+      ),
       position: LatLng(30.585164, 36.238414),
     ),
     const Marker(
@@ -44,6 +59,7 @@ class _AfterTestState extends State<AfterTest> {
   ];
   late bool _serviceEnabled;
   late PermissionStatus _permissionGranted;
+  // ignore: unused_field
   late LocationData _location;
   @override
   void initState() {
@@ -63,13 +79,77 @@ class _AfterTestState extends State<AfterTest> {
         centerTitle: true,
         elevation: 2,
       ),
-      body: GoogleMap(
-        mapType: MapType.normal,
-        initialCameraPosition: _kGooglePlex,
-        onMapCreated: (GoogleMapController controller) {
-          _controller.complete(controller);
-        },
-        markers: marker.toSet(),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            SizedBox(
+              width: double.infinity,
+              height: 300,
+              child: GoogleMap(
+                // liteModeEnabled: true,
+                // cameraTargetBounds: CameraTargetBounds.unbounded,
+                // buildingsEnabled: true,
+                // indoorViewEnabled: true,
+                mapType: MapType.normal,
+                initialCameraPosition: _kGooglePlex,
+                onMapCreated: (GoogleMapController controller) {
+                  _controller.complete(controller);
+                },
+                markers: marker.toSet(),
+              ),
+            ),
+            Form(
+              key: formkey,
+              child: Column(
+                children: [
+                  //name
+                  RigsterButton(
+                    onClick: (value) {
+                      name = value;
+                    },
+                    bord: TextInputType.name,
+                    onEmpty: (value) {
+                      if (value!.isEmpty) {
+                        return KeyLang.pusername.tr();
+                      }
+                      return null;
+                    },
+                    titlle: KeyLang.username.tr(),
+                    icon: const Icon(Icons.person),
+                  ),
+                  //age
+                  RigsterButton(
+                    titlle: KeyLang.age.tr(),
+                    bord: TextInputType.number,
+                    onEmpty: (value) {
+                      if (value!.isEmpty) {
+                        return KeyLang.page.tr();
+                      }
+                      return null;
+                    },
+                    icon: const Icon(Icons.event_available),
+                    onClick: (value) {
+                      email = value;
+                    },
+                  ),
+                  //Phone
+                  RigsterButton(
+                    titlle: KeyLang.phone.tr(),
+                    icon: const Icon(
+                      Icons.phone,
+                    ),
+                    bord: TextInputType.phone,
+                    onEmpty: (value) =>
+                        value!.length < 10 ? KeyLang.ephone.tr() : null,
+                    onClick: (value) {
+                      phone = value;
+                    },
+                  ),
+                ],
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
