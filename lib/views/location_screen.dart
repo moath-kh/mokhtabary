@@ -44,6 +44,7 @@ class _AfterTestState extends State<AfterTest> {
       infoWindow: InfoWindow(title: 'Med Lap'),
       position: LatLng(30.1957514, 35.7360254),
     ),
+    //marker med lap
     const Marker(
       markerId: MarkerId(' Location 2 '),
       infoWindow: InfoWindow(
