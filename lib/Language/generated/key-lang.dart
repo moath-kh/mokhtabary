@@ -35,4 +35,6 @@ class KeyLang {
   static String age = 'age';
   static String page = 'page';
   static String phone = 'phone';
+  static String wrong = 'wrong';
+  static String wrongr = 'wrongr';
 }

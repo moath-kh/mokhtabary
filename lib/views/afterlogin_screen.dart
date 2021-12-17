@@ -1,6 +1,8 @@
+// ignore: implementation_imports
+import 'package:easy_localization/src/public_ext.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:mokhtabary/views/patient_screen.dart';
+import 'package:mokhtabary/Language/generated/key-lang.dart';
 import 'package:mokhtabary/widgets/hello.dart';
 import 'package:mokhtabary/widgets/my_button.dart';
 import 'package:mokhtabary/widgets/rigester_button.dart';
@@ -14,10 +16,11 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  // ignore: unused_field
   final _auth = FirebaseAuth.instance;
   late String email;
   late String password;
-
+  bool isPassword = true;
   var formkey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
@@ -46,13 +49,20 @@ class _LoginScreenState extends State<LoginScreen> {
                 },
               ),
               RigsterButton(
-                titlle: 'Password',
+                titlle: KeyLang.pass.tr(),
                 icon: const Icon(Icons.lock),
+                sicon: isPassword ? Icons.visibility : Icons.visibility_off,
+                suFF: () {
+                  setState(() {
+                    isPassword = !isPassword;
+                  });
+                },
                 bord: TextInputType.visiblePassword,
-                scure: true,
+                onsubmit: (value) {},
+                scure: isPassword,
                 onEmpty: (value) {
                   if (value!.isEmpty) {
-                    return 'Please Enter Password';
+                    return KeyLang.ppass.tr();
                   }
                   return null;
                 },
@@ -64,20 +74,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 tittle: 'Login',
                 color: Colors.blue,
                 onPressed: () async {
-                  if (formkey.currentState!.validate()) {
-                    try {
-                      final user = _auth.signInWithEmailAndPassword(
-                          email: email, password: password);
-                      // ignore: unnecessary_null_comparison
-                      if (user != null) {
-                        Navigator.pushReplacementNamed(
-                            context, PatientSCreen.screenRoute);
-                      }
-                    } catch (e) {
-                      // ignore: avoid_print
-                      print(e);
-                    }
-                  }
+                  if (formkey.currentState!.validate()) {}
                 },
               )
             ],

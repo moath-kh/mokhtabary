@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_localization/src/public_ext.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:mokhtabary/Language/generated/key-lang.dart';
 import 'package:mokhtabary/models/rigst_model.dart';
 import 'package:mokhtabary/services/daatabase.dart';
@@ -147,16 +148,26 @@ class _RigsteraitionState extends State<Rigsteraition> {
                       );
                     }
                     // ignore: unnecessary_null_comparison
-                    if (newUSer == null) {
-                      setState(() => error = 'oanpodinapvnakm');
+                    if (newUSer != null) {
+                      setState(() {
+                        Fluttertoast.showToast(msg: "Signed In Sucessfully");
+                        Navigator.pushReplacementNamed(
+                            context, NavScreen.screenRoute);
+                      });
                     }
                     Navigator.pushReplacementNamed(
                         context, NavScreen.screenRoute);
                   } catch (e) {
                     // ignore: avoid_print
                     print(e.toString());
-                    // ignore: avoid_returning_null_for_void
-                    return null;
+                    Fluttertoast.showToast(
+                        msg: KeyLang.wrong.tr(),
+                        toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIosWeb: 1,
+                        backgroundColor: Colors.red,
+                        textColor: Colors.white,
+                        fontSize: 16.0);
                   }
                 },
               ),

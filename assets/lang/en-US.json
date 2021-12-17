@@ -32,5 +32,7 @@
     "age": " Age",
     "phone": "Number Phone",
     "ur": "Urinalysis Test",
-    "ephone": "Enter a 10-digit Number Phone"
+    "ephone": "Enter a 10-digit Number Phone",
+    "wrong": "The Email or Pssword is wrong",
+    "wrongr": "Make sure the information entered is correct"
 }
