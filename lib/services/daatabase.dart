@@ -14,6 +14,7 @@ class DataBaseService {
       'phone': phone,
       'name': name,
       'email': email,
+      'rules': 'user',
     });
   }
 

@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:mokhtabary/Language/Config/config-lang.dart';
 import 'package:mokhtabary/theme/custome_theme.dart';
 import 'package:mokhtabary/views/afterlogin_screen.dart';
+import 'package:mokhtabary/views/controller/auth.dart';
 import 'package:mokhtabary/views/home.dart';
+import 'package:mokhtabary/views/lap.dart';
 import 'package:mokhtabary/views/navigation_page.dart';
 import 'package:mokhtabary/views/patient_screen.dart';
 import 'package:mokhtabary/views/location_screen.dart';
@@ -13,20 +15,28 @@ import 'package:mokhtabary/views/screen_card.dart';
 import 'package:mokhtabary/views/splash_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:mokhtabary/views/test_screen.dart';
+import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
-  runApp(EasyLocalization(
-    child: const MyApp(),
-    supportedLocales: const [
-      ConfigLanguage.AR_LOCALE,
-      ConfigLanguage.EN_LOCALE
-    ],
-    path: ConfigLanguage.LANG_PATH,
-  ));
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => AuthState()),
+      ],
+      child: EasyLocalization(
+        child: const MyApp(),
+        supportedLocales: const [
+          ConfigLanguage.AR_LOCALE,
+          ConfigLanguage.EN_LOCALE
+        ],
+        path: ConfigLanguage.LANG_PATH,
+      ),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -58,6 +68,7 @@ class MyApp extends StatelessWidget {
         Rigsteraition.screenRoute: (context) => const Rigsteraition(),
         PatientSCreen.screenRoute: (context) => const PatientSCreen(),
         TestScreen.screenRoute: (context) => const TestScreen(),
+        Lappp.screenRoute: (context) => const Lappp(),
         AfterTest.screenRoute: (context) => const AfterTest(
               tittle: '',
             ),
