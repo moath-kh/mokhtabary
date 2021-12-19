@@ -8,10 +8,9 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:mokhtabary/Language/generated/key-lang.dart';
 // ignore: unused_import
 import 'package:mokhtabary/services/auth.dart';
-import 'package:mokhtabary/views/afterlogin_screen.dart';
 import 'package:mokhtabary/views/controller/auth.dart';
-import 'package:mokhtabary/views/lap.dart';
 import 'package:mokhtabary/views/navigation_page.dart';
+import 'package:mokhtabary/views/navlap.dart';
 import 'package:mokhtabary/views/rigester_screen.dart';
 import 'package:mokhtabary/widgets/hello.dart';
 // ignore: unused_import
@@ -95,6 +94,7 @@ class _PageHomeState extends State<PageHome> {
                   password = value;
                 },
               ),
+              //Button Login
               Mybuuton(
                 tittle: KeyLang.login.tr(),
                 color: Colors.orange[700]!,
@@ -118,11 +118,10 @@ class _PageHomeState extends State<PageHome> {
                             .doc(value.user!.uid.toString())
                             .get()
                             .then((value) {
-                          Future.delayed(const Duration(milliseconds: 200), () {
+                            Future.delayed(const Duration(milliseconds: 200), () {
                             Provider.of<AuthState>(context, listen: false)
                                 .updateUser(value.data());
                           });
-
                           if (value.data()!['rules'] == 'user') {
                             setState(() {
                               Fluttertoast.showToast(
@@ -131,8 +130,12 @@ class _PageHomeState extends State<PageHome> {
                                   context, NavScreen.screenRoute);
                             });
                           } else if (value.data()!['rules'] == 'admin') {
-                            Navigator.pushReplacementNamed(
-                                context, Lappp.screenRoute);
+                            setState(() {
+                              Fluttertoast.showToast(
+                                  msg: "Signed In Sucessfully");
+                              Navigator.pushReplacementNamed(
+                                  context, NAvLApScreen.screenRoute);
+                            });
                           }
                           // ignore: avoid_print
                           print(value.data());
@@ -166,37 +169,6 @@ class _PageHomeState extends State<PageHome> {
               const SizedBox(
                 height: 15,
               ),
-              Text(
-                error,
-                style: const TextStyle(color: Colors.red, fontSize: 50),
-              ),
-              //Button Lap
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Row(
-                  children: [
-                    Text(
-                      KeyLang.loglap.tr(),
-                      style: const TextStyle(
-                          fontWeight: FontWeight.w700,
-                          color: Colors.red,
-                          fontSize: 20),
-                    ),
-                    const SizedBox(
-                      width: 5,
-                    ),
-                    TextButton(
-                        onPressed: () {
-                          Navigator.pushNamed(context, LoginScreen.screenRoute);
-                        },
-                        child: Text(
-                          KeyLang.login.tr(),
-                          style: const TextStyle(
-                              fontWeight: FontWeight.w700, fontSize: 20),
-                        ))
-                  ],
-                ),
-              )
             ],
           ),
         ),

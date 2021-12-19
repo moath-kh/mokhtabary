@@ -34,5 +34,6 @@
     "ur": "Urinalysis Test",
     "ephone": "Enter a 10-digit Number Phone",
     "wrong": "The Email or Pssword is wrong",
+    "date": "Date",
     "wrongr": "Make sure the information entered is correct"
 }

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class EdittScreen extends StatefulWidget {
-  const EdittScreen({Key? key}) : super(key: key);
+class ChatScreen extends StatefulWidget {
+  const ChatScreen({Key? key}) : super(key: key);
 
   @override
-  _EdittScreenState createState() => _EdittScreenState();
+  _ChatScreenState createState() => _ChatScreenState();
 }
 
-class _EdittScreenState extends State<EdittScreen> {
+class _ChatScreenState extends State<ChatScreen> {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(

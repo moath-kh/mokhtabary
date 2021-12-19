@@ -6,8 +6,9 @@ import 'package:mokhtabary/theme/custome_theme.dart';
 import 'package:mokhtabary/views/afterlogin_screen.dart';
 import 'package:mokhtabary/views/controller/auth.dart';
 import 'package:mokhtabary/views/home.dart';
-import 'package:mokhtabary/views/lap.dart';
+import 'package:mokhtabary/views/laps_creen.dart';
 import 'package:mokhtabary/views/navigation_page.dart';
+import 'package:mokhtabary/views/navlap.dart';
 import 'package:mokhtabary/views/patient_screen.dart';
 import 'package:mokhtabary/views/location_screen.dart';
 import 'package:mokhtabary/views/rigester_screen.dart';
@@ -68,7 +69,9 @@ class MyApp extends StatelessWidget {
         Rigsteraition.screenRoute: (context) => const Rigsteraition(),
         PatientSCreen.screenRoute: (context) => const PatientSCreen(),
         TestScreen.screenRoute: (context) => const TestScreen(),
-        Lappp.screenRoute: (context) => const Lappp(),
+        LapSCreen.screenRoute: (context) => const LapSCreen(),
+        // ignore: equal_keys_in_map
+        NAvLApScreen.screenRoute: (context) => const NAvLApScreen(),
         AfterTest.screenRoute: (context) => const AfterTest(
               tittle: '',
             ),

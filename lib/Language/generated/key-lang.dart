@@ -37,4 +37,5 @@ class KeyLang {
   static String phone = 'phone';
   static String wrong = 'wrong';
   static String wrongr = 'wrongr';
+  static String date = 'date';
 }

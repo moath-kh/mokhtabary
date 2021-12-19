@@ -149,12 +149,12 @@ class _RigsteraitionState extends State<Rigsteraition> {
                     }
                     // ignore: unnecessary_null_comparison
                     if (newUSer != null) {
-                      setState(() {
-                        Fluttertoast.showToast(msg: "Signed In Sucessfully");
-                        Navigator.pushReplacementNamed(
-                            context, NavScreen.screenRoute);
-                      });
-                    }
+                        setState(() {
+                          Fluttertoast.showToast(msg: "Signed In Sucessfully");
+                          Navigator.pushReplacementNamed(
+                              context, NavScreen.screenRoute);
+                        });
+                      }
                     Navigator.pushReplacementNamed(
                         context, NavScreen.screenRoute);
                   } catch (e) {

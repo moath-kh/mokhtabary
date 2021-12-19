@@ -12,11 +12,13 @@ class ComponentDrawer extends StatelessWidget {
   const ComponentDrawer({
     Key? key,
   }) : super(key: key);
+  final String name = '';
 
   @override
   Widget build(BuildContext context) {
     // ignore: unused_local_variable
     final _auth = FirebaseAuth.instance;
+
     return Drawer(
       child: Column(
         children: [
@@ -32,7 +34,7 @@ class ComponentDrawer extends StatelessWidget {
           const SizedBox(
             height: 50,
           ),
-          Text('Name User',
+          Text('',
               style: GoogleFonts.pacifico(
                   color: Colors.amber[600],
                   fontWeight: FontWeight.bold,
