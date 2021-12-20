@@ -5,7 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:mokhtabary/Language/generated/key-lang.dart';
 import 'package:mokhtabary/views/home.dart';
-import '../custome_list.dart';
+import 'custome_list.dart';
 import 'alert_lang.dart';
 
 class ComponentDrawer extends StatelessWidget {

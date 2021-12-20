@@ -8,11 +8,9 @@ import 'package:mokhtabary/views/controller/auth.dart';
 import 'package:mokhtabary/views/home.dart';
 import 'package:mokhtabary/views/laps_creen.dart';
 import 'package:mokhtabary/views/navigation_page.dart';
-import 'package:mokhtabary/views/navlap.dart';
 import 'package:mokhtabary/views/patient_screen.dart';
 import 'package:mokhtabary/views/location_screen.dart';
 import 'package:mokhtabary/views/rigester_screen.dart';
-import 'package:mokhtabary/views/screen_card.dart';
 import 'package:mokhtabary/views/splash_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:mokhtabary/views/test_screen.dart';
@@ -64,14 +62,14 @@ class MyApp extends StatelessWidget {
         PageSplash.id: (context) => const PageSplash(),
         PageHome.screenRoute: (context) => const PageHome(),
         NavScreen.screenRoute: (context) => const NavScreen(),
-        CardScreen.screenRoute: (context) => const CardScreen(),
+        // CardScreen.screenRoute: (context) => const CardScreen(),
         LoginScreen.screenRoute: (context) => const LoginScreen(),
         Rigsteraition.screenRoute: (context) => const Rigsteraition(),
         PatientSCreen.screenRoute: (context) => const PatientSCreen(),
         TestScreen.screenRoute: (context) => const TestScreen(),
         LapSCreen.screenRoute: (context) => const LapSCreen(),
         // ignore: equal_keys_in_map
-        NAvLApScreen.screenRoute: (context) => const NAvLApScreen(),
+        //  NAvLApScreen.screenRoute: (context) => const NAvLApScreen(),
         AfterTest.screenRoute: (context) => const AfterTest(
               tittle: '',
             ),

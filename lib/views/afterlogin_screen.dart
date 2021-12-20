@@ -4,8 +4,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:mokhtabary/Language/generated/key-lang.dart';
 import 'package:mokhtabary/widgets/hello.dart';
-import 'package:mokhtabary/widgets/my_button.dart';
-import 'package:mokhtabary/widgets/rigester_button.dart';
+import 'package:mokhtabary/widgets/Button/my_button.dart';
+import 'package:mokhtabary/widgets/Button/rigester_button.dart';
 
 class LoginScreen extends StatefulWidget {
   static const String screenRoute = 'LoginScreen';

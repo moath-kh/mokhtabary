@@ -10,8 +10,8 @@ import 'package:mokhtabary/models/rigst_model.dart';
 import 'package:mokhtabary/services/daatabase.dart';
 import 'package:mokhtabary/views/navigation_page.dart';
 import 'package:mokhtabary/widgets/hello.dart';
-import 'package:mokhtabary/widgets/my_button.dart';
-import 'package:mokhtabary/widgets/rigester_button.dart';
+import 'package:mokhtabary/widgets/Button/my_button.dart';
+import 'package:mokhtabary/widgets/Button/rigester_button.dart';
 
 class Rigsteraition extends StatefulWidget {
   static const String screenRoute = 'rigsterscreen';

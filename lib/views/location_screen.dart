@@ -6,10 +6,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:location/location.dart';
-
 // ignore: unused_import
 import 'package:mokhtabary/Language/generated/key-lang.dart';
-import 'package:mokhtabary/widgets/rigester_button.dart';
+import 'package:mokhtabary/widgets/Button/my_button.dart';
+import 'package:mokhtabary/widgets/CArdS/delivery_card.dart';
+import 'package:mokhtabary/widgets/CArdS/price_card.dart';
+import 'package:mokhtabary/widgets/Button/rigester_button.dart';
 
 class AfterTest extends StatefulWidget {
   static const String screenRoute = 'AfterTstsSccreen';
@@ -23,11 +25,10 @@ class AfterTest extends StatefulWidget {
 class _AfterTestState extends State<AfterTest> {
   final Completer<GoogleMapController> _controller = Completer();
   // ignore: prefer_const_constructors
-  late String email;
-  late String password;
   late String phone;
   late String name;
   late String uid;
+  late String age;
   String error = '';
   bool isPassword = true;
   bool loading = false;
@@ -99,54 +100,73 @@ class _AfterTestState extends State<AfterTest> {
                 markers: marker.toSet(),
               ),
             ),
-            Form(
-              key: formkey,
-              child: Column(
-                children: [
-                  //name
-                  RigsterButton(
-                    onClick: (value) {
-                      name = value;
-                    },
-                    bord: TextInputType.name,
-                    onEmpty: (value) {
-                      if (value!.isEmpty) {
-                        return KeyLang.pusername.tr();
-                      }
-                      return null;
-                    },
-                    titlle: KeyLang.username.tr(),
-                    icon: const Icon(Icons.person),
-                  ),
-                  //age
-                  RigsterButton(
-                    titlle: KeyLang.age.tr(),
-                    bord: TextInputType.number,
-                    onEmpty: (value) {
-                      if (value!.isEmpty) {
-                        return KeyLang.page.tr();
-                      }
-                      return null;
-                    },
-                    icon: const Icon(Icons.event_available),
-                    onClick: (value) {
-                      email = value;
-                    },
-                  ),
-                  //Phone
-                  RigsterButton(
-                    titlle: KeyLang.phone.tr(),
-                    icon: const Icon(
-                      Icons.phone,
+            SingleChildScrollView(
+              child: Form(
+                key: formkey,
+                child: Column(
+                  children: [
+                    //name
+                    RigsterButton(
+                      onClick: (value) {
+                        name = value;
+                      },
+                      bord: TextInputType.name,
+                      onEmpty: (value) {
+                        if (value!.isEmpty) {
+                          return KeyLang.pusername.tr();
+                        }
+                        return null;
+                      },
+                      titlle: KeyLang.username.tr(),
+                      icon: const Icon(Icons.person),
                     ),
-                    bord: TextInputType.phone,
-                    onEmpty: (value) =>
-                        value!.length < 10 ? KeyLang.ephone.tr() : null,
-                    onClick: (value) {
-                      phone = value;
-                    },
-                  ),
-                ],
+                    //age
+                    RigsterButton(
+                      titlle: KeyLang.age.tr(),
+                      bord: TextInputType.number,
+                      onEmpty: (value) {
+                        if (value!.isEmpty) {
+                          return KeyLang.page.tr();
+                        }
+                        return null;
+                      },
+                      icon: const Icon(Icons.event_available),
+                      onClick: (value) {
+                        age = value;
+                      },
+                    ),
+                    //Phone
+                    RigsterButton(
+                      titlle: KeyLang.phone.tr(),
+                      icon: const Icon(
+                        Icons.phone,
+                      ),
+                      bord: TextInputType.phone,
+                      onEmpty: (value) =>
+                          value!.length < 10 ? KeyLang.ephone.tr() : null,
+                      onClick: (value) {
+                        phone = value;
+                      },
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    const PriceCard(),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    const DeliveryCard(),
+                    const SizedBox(height: 10),
+                    Mybuuton(
+                        tittle: KeyLang.submit.tr(),
+                        color: Colors.blue,
+                        onPressed: () {
+                          if (formkey.currentState!.validate()) {
+                            
+                          }
+                        })
+                  ],
+                ),
               ),
             )
           ],
@@ -161,7 +181,6 @@ class _AfterTestState extends State<AfterTest> {
     _serviceEnabled = await location.serviceEnabled();
     if (_serviceEnabled) {
       _permissionGranted = await location.hasPermission();
-
       if (_permissionGranted == PermissionStatus.granted) {
         //
         // _location = await location.getLocation();
@@ -209,6 +228,75 @@ class _AfterTestState extends State<AfterTest> {
     }
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // class GeoLocatorWidget extends StatefulWidget {
 //   static const String screenRoute = 'AfterTstsSccreen';

@@ -38,4 +38,8 @@ class KeyLang {
   static String wrong = 'wrong';
   static String wrongr = 'wrongr';
   static String date = 'date';
+  static String jd = 'jd';
+  static String del = 'del';
+  static String submit = 'submit';
+  static String price = 'price';
 }

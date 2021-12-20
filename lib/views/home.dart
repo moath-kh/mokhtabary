@@ -9,14 +9,14 @@ import 'package:mokhtabary/Language/generated/key-lang.dart';
 // ignore: unused_import
 import 'package:mokhtabary/services/auth.dart';
 import 'package:mokhtabary/views/controller/auth.dart';
+import 'package:mokhtabary/views/laps_creen.dart';
 import 'package:mokhtabary/views/navigation_page.dart';
-import 'package:mokhtabary/views/navlap.dart';
 import 'package:mokhtabary/views/rigester_screen.dart';
 import 'package:mokhtabary/widgets/hello.dart';
 // ignore: unused_import
 import 'package:mokhtabary/widgets/loading.dart';
-import 'package:mokhtabary/widgets/my_button.dart';
-import 'package:mokhtabary/widgets/rigester_button.dart';
+import 'package:mokhtabary/widgets/Button/my_button.dart';
+import 'package:mokhtabary/widgets/Button/rigester_button.dart';
 import 'package:provider/provider.dart';
 
 class PageHome extends StatefulWidget {
@@ -34,146 +34,164 @@ class _PageHomeState extends State<PageHome> {
   late String password;
   String error = '';
   bool isPassword = true;
-  // bool loading = false;
+  bool loading = false;
 
   var formkey = GlobalKey<FormState>();
   @override
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(KeyLang.appName.tr()),
-        centerTitle: true,
-        backgroundColor: Colors.orange[700],
-      ),
-      backgroundColor: Colors.white,
-      body: SingleChildScrollView(
-        child: Form(
-          key: formkey,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              const HelloScreen(),
-              const SizedBox(
-                height: 30,
-              ),
-              RigsterButton(
-                titlle: KeyLang.email.tr(),
-                bord: TextInputType.emailAddress,
-                icon: const Icon(Icons.email),
-                onEmpty: (value) {
-                  if (value!.isEmpty) {
-                    return KeyLang.pemail.tr();
-                  }
-                  return null;
-                },
-                onClick: (value) {
-                  email = value;
-                },
-              ),
-              RigsterButton(
-                titlle: KeyLang.pass.tr(),
-                icon: const Icon(Icons.lock),
-                sicon: isPassword ? Icons.visibility : Icons.visibility_off,
-                suFF: () {
-                  setState(() {
-                    isPassword = !isPassword;
-                  });
-                },
-                bord: TextInputType.visiblePassword,
-                onsubmit: (value) {},
-                scure: isPassword,
-                onEmpty: (value) {
-                  if (value!.isEmpty) {
-                    return KeyLang.ppass.tr();
-                  }
-                  return null;
-                },
-                onClick: (value) {
-                  password = value;
-                },
-              ),
-              //Button Login
-              Mybuuton(
-                tittle: KeyLang.login.tr(),
-                color: Colors.orange[700]!,
-                onPressed: () {
-                  if (formkey.currentState!.validate()) {
-                    setState(() {
-                      // loading = true;
-                    });
-                    try {
-                      _auth
-                          .signInWithEmailAndPassword(
-                        email: email.trim(),
-                        password: password.trim(),
-                      )
-                          .then((value) {
-                        // ignore: avoid_print
-                        print(
-                            'our user is  ====================== ${value.user!.uid}');
-                        FirebaseFirestore.instance
-                            .collection('patint')
-                            .doc(value.user!.uid.toString())
-                            .get()
-                            .then((value) {
-                            Future.delayed(const Duration(milliseconds: 200), () {
-                            Provider.of<AuthState>(context, listen: false)
-                                .updateUser(value.data());
+    return loading
+        ? const Loading()
+        : Scaffold(
+            appBar: AppBar(
+              title: Text(KeyLang.appName.tr()),
+              centerTitle: true,
+              backgroundColor: Colors.orange[700],
+            ),
+            backgroundColor: Colors.white,
+            body: SingleChildScrollView(
+              child: Form(
+                key: formkey,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    const HelloScreen(),
+                    const SizedBox(
+                      height: 30,
+                    ),
+                    RigsterButton(
+                      titlle: KeyLang.email.tr(),
+                      bord: TextInputType.emailAddress,
+                      icon: const Icon(Icons.email),
+                      onEmpty: (value) {
+                        if (value!.isEmpty) {
+                          return KeyLang.pemail.tr();
+                        }
+                        return null;
+                      },
+                      onClick: (value) {
+                        email = value;
+                      },
+                    ),
+                    RigsterButton(
+                      titlle: KeyLang.pass.tr(),
+                      icon: const Icon(Icons.lock),
+                      sicon:
+                          isPassword ? Icons.visibility : Icons.visibility_off,
+                      suFF: () {
+                        setState(() {
+                          isPassword = !isPassword;
+                        });
+                      },
+                      bord: TextInputType.visiblePassword,
+                      onsubmit: (value) {},
+                      scure: isPassword,
+                      onEmpty: (value) {
+                        if (value!.isEmpty) {
+                          return KeyLang.ppass.tr();
+                        }
+                        return null;
+                      },
+                      onClick: (value) {
+                        password = value;
+                      },
+                    ),
+                    //Button Login
+                    Mybuuton(
+                      tittle: KeyLang.login.tr(),
+                      color: Colors.orange[700]!,
+                      onPressed: () {
+                        if (formkey.currentState!.validate()) {
+                          setState(() {
+                            loading = true;
                           });
-                          if (value.data()!['rules'] == 'user') {
-                            setState(() {
-                              Fluttertoast.showToast(
-                                  msg: "Signed In Sucessfully");
-                              Navigator.pushReplacementNamed(
-                                  context, NavScreen.screenRoute);
+                          try {
+                            _auth
+                                .signInWithEmailAndPassword(
+                              email: email.trim(),
+                              password: password.trim(),
+                            )
+                                .then((value) {
+                              // ignore: avoid_print
+                              print(
+                                  'our user is  ====================== ${value.user!.uid}');
+                              FirebaseFirestore.instance
+                                  .collection('patint')
+                                  .doc(value.user!.uid.toString())
+                                  .get()
+                                  .then((value) {
+                                Future.delayed(
+                                    const Duration(milliseconds: 200), () {
+                                  Provider.of<AuthState>(context, listen: false)
+                                      .updateUser(value.data());
+                                });
+                                if (value.data()!['rules'] == 'user') {
+                                  setState(() {
+                                    Fluttertoast.showToast(
+                                        msg: "Signed In Sucessfully");
+                                    Navigator.pushReplacementNamed(
+                                        context, NavScreen.screenRoute);
+                                  });
+                                } else if (value.data()!['rules'] == 'admin') {
+                                  setState(() {
+                                    Fluttertoast.showToast(
+                                        msg: "Signed In Sucessfully");
+                                    Navigator.pushReplacementNamed(
+                                        context, LapSCreen.screenRoute);
+                                  });
+                                }
+                                // ignore: avoid_print
+                                print(value.data());
+                              });
+                            }).catchError((e) {
+                              setState(() {
+                                //   print(e.toString());
+                                Fluttertoast.showToast(
+                                    msg: KeyLang.wrong.tr(),
+                                    toastLength: Toast.LENGTH_SHORT,
+                                    gravity: ToastGravity.CENTER,
+                                    timeInSecForIosWeb: 1,
+                                    backgroundColor: Colors.red,
+                                    textColor: Colors.white,
+                                    fontSize: 16.0);
+                                loading = false;
+                              });
                             });
-                          } else if (value.data()!['rules'] == 'admin') {
+                          } catch (e) {
                             setState(() {
+                              // ignore: avoid_print
+                              print(e.toString());
                               Fluttertoast.showToast(
-                                  msg: "Signed In Sucessfully");
-                              Navigator.pushReplacementNamed(
-                                  context, NAvLApScreen.screenRoute);
+                                  msg: KeyLang.wrong.tr(),
+                                  toastLength: Toast.LENGTH_SHORT,
+                                  gravity: ToastGravity.CENTER,
+                                  timeInSecForIosWeb: 1,
+                                  backgroundColor: Colors.red,
+                                  textColor: Colors.white,
+                                  fontSize: 16.0);
+                              // loading = false;
                             });
                           }
-                          // ignore: avoid_print
-                          print(value.data());
-                        });
-                      });
-                    } catch (e) {
-                      setState(() {
-                        // ignore: avoid_print
-                        print(e.toString());
-                        Fluttertoast.showToast(
-                            msg: KeyLang.wrong.tr(),
-                            toastLength: Toast.LENGTH_SHORT,
-                            gravity: ToastGravity.CENTER,
-                            timeInSecForIosWeb: 1,
-                            backgroundColor: Colors.red,
-                            textColor: Colors.white,
-                            fontSize: 16.0);
-                        // loading = false;
-                      });
-                    }
-                  }
-                },
+                        }
+                      },
+                    ),
+                    //Button Rigster
+                    Mybuuton(
+                        tittle: KeyLang.rigst.tr(),
+                        color: Colors.blue,
+                        onPressed: () {
+                          Navigator.pushNamed(
+                              context, Rigsteraition.screenRoute);
+                        }),
+                    const SizedBox(
+                      height: 15,
+                    ),
+                  ],
+                ),
               ),
-              //Button Rigster
-              Mybuuton(
-                  tittle: KeyLang.rigst.tr(),
-                  color: Colors.blue,
-                  onPressed: () {
-                    Navigator.pushNamed(context, Rigsteraition.screenRoute);
-                  }),
-              const SizedBox(
-                height: 15,
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
+            ),
+          );
   }
 }
 
