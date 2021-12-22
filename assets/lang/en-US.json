@@ -39,5 +39,6 @@
     "price": "Price  :",
     "jd": "JD",
     "del": "Delivery : ",
+    "req": "The Request has been send ",
     "submit": "Submit"
 }

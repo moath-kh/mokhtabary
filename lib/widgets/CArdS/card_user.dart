@@ -1,19 +1,22 @@
-// ignore: implementation_imports
+// ignore: implementation_imports, unused_import
 import 'package:easy_localization/src/public_ext.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+// ignore: unused_import
 import 'package:mokhtabary/Language/generated/key-lang.dart';
 
 // ignore: must_be_immutable
 class CardUser extends StatelessWidget {
   CardUser({
     required this.tittle,
+    required this.date,
     required this.image,
     this.cardClick,
     Key? key,
   }) : super(key: key);
   final String tittle;
   final String image;
+  final String date;
   void Function()? cardClick;
 
   @override
@@ -44,7 +47,7 @@ class CardUser extends StatelessWidget {
                 alignment: AlignmentDirectional.bottomStart,
                 children: [
                   Text(
-                    KeyLang.date.tr() + '  10/12',
+                    date,
                     style: TextStyle(
                         fontSize: 15,
                         color: Colors.grey[700],

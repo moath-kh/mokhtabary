@@ -1,6 +1,10 @@
 import 'dart:async';
 // ignore: implementation_imports
+import 'package:cloud_firestore/cloud_firestore.dart';
+// ignore: implementation_imports
 import 'package:easy_localization/src/public_ext.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -8,6 +12,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:location/location.dart';
 // ignore: unused_import
 import 'package:mokhtabary/Language/generated/key-lang.dart';
+import 'package:mokhtabary/services/location_service.dart';
 import 'package:mokhtabary/widgets/Button/my_button.dart';
 import 'package:mokhtabary/widgets/CArdS/delivery_card.dart';
 import 'package:mokhtabary/widgets/CArdS/price_card.dart';
@@ -29,14 +34,28 @@ class _AfterTestState extends State<AfterTest> {
   late String name;
   late String uid;
   late String age;
+  final TextEditingController _searchcontroller = TextEditingController();
   String error = '';
   bool isPassword = true;
   bool loading = false;
+  bool buttonPressed = false;
   var formkey = GlobalKey<FormState>();
   static CameraPosition get _kGooglePlex => const CameraPosition(
         target: LatLng(30.194933, 35.737234),
         zoom: 14.4746,
       );
+  // static final Marker _kLakemarker = Marker(
+  //     markerId: MarkerId('_lakemarkerket'),
+  //     infoWindow: InfoWindow(title: 'lake pexl'),
+  //     icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueBlue),
+  //     position: LatLng(30.194933, 35.737234));
+  // static final Marker _googleplexmarker = Marker(
+  //   rotation: 1,
+  //   icon: BitmapDescriptor.defaultMarker,
+  //   markerId: MarkerId('Your Location'),
+  //   infoWindow: InfoWindow(title: 'Med Lap'),
+  //   position: LatLng(30.1957514, 35.7360254),
+  // );
 
   late List<Marker> marker = [
     const Marker(
@@ -84,6 +103,26 @@ class _AfterTestState extends State<AfterTest> {
       body: SingleChildScrollView(
         child: Column(
           children: [
+            Row(
+              children: [
+                Expanded(
+                    child: TextFormField(
+                  controller: _searchcontroller,
+                  textCapitalization: TextCapitalization.words,
+                  decoration: const InputDecoration(hintText: 'Search bu City'),
+                  onChanged: (value) {
+                    // _searchcontroller.text = value;
+                    // ignore: avoid_print
+                    print(value);
+                  },
+                )),
+                IconButton(
+                    onPressed: () {
+                      LocationServiceMe().getplace(_searchcontroller.text);
+                    },
+                    icon: const Icon(Icons.search))
+              ],
+            ),
             SizedBox(
               width: double.infinity,
               height: 300,
@@ -100,6 +139,11 @@ class _AfterTestState extends State<AfterTest> {
                 markers: marker.toSet(),
               ),
             ),
+            // FloatingActionButton.extended(
+            //   onPressed: _goToThelake,
+            //   label: Text('data'),
+            //   icon: Icon(Icons.directions_boat),
+            // ),
             SingleChildScrollView(
               child: Form(
                 key: formkey,
@@ -107,6 +151,11 @@ class _AfterTestState extends State<AfterTest> {
                   children: [
                     //name
                     RigsterButton(
+                      onsave: (value) {
+                        setState(() {
+                          name = value!;
+                        });
+                      },
                       onClick: (value) {
                         name = value;
                       },
@@ -131,6 +180,11 @@ class _AfterTestState extends State<AfterTest> {
                         return null;
                       },
                       icon: const Icon(Icons.event_available),
+                      onsave: (value) {
+                        setState(() {
+                          age = value!;
+                        });
+                      },
                       onClick: (value) {
                         age = value;
                       },
@@ -142,6 +196,11 @@ class _AfterTestState extends State<AfterTest> {
                         Icons.phone,
                       ),
                       bord: TextInputType.phone,
+                      onsave: (value) {
+                        setState(() {
+                          phone = value!;
+                        });
+                      },
                       onEmpty: (value) =>
                           value!.length < 10 ? KeyLang.ephone.tr() : null,
                       onClick: (value) {
@@ -160,11 +219,44 @@ class _AfterTestState extends State<AfterTest> {
                     Mybuuton(
                         tittle: KeyLang.submit.tr(),
                         color: Colors.blue,
-                        onPressed: () {
-                          if (formkey.currentState!.validate()) {
-                            
-                          }
-                        })
+                        buttonPressed: buttonPressed,
+                        onPressed: buttonPressed
+                            ? null
+                            : () {
+                                final userId =
+                                    FirebaseAuth.instance.currentUser!.uid;
+                                if (formkey.currentState!.validate()) {
+                                  FirebaseFirestore.instance
+                                      .collection('request')
+                                      .add({
+                                    'name': name,
+                                    'phone': phone,
+                                    'age': age,
+                                    'date': Timestamp.fromDate(
+                                        DateTime.now().toLocal()),
+                                    'typeTest': widget.tittle,
+                                    'userId': userId
+                                  }).then((value) {
+                                    setState(() {
+                                      buttonPressed = true;
+                                      Fluttertoast.showToast(
+                                          msg: KeyLang.requst.tr(),
+                                          toastLength: Toast.LENGTH_SHORT,
+                                          gravity: ToastGravity.CENTER,
+                                          timeInSecForIosWeb: 1,
+                                          backgroundColor: Colors.red,
+                                          textColor: Colors.white,
+                                          fontSize: 16.0);
+                                    });
+                                    Future.delayed(const Duration(minutes: 30),
+                                        () {
+                                      setState(() {
+                                        buttonPressed = false;
+                                      });
+                                    });
+                                  });
+                                }
+                              })
                   ],
                 ),
               ),
@@ -182,21 +274,21 @@ class _AfterTestState extends State<AfterTest> {
     if (_serviceEnabled) {
       _permissionGranted = await location.hasPermission();
       if (_permissionGranted == PermissionStatus.granted) {
-        //
-        // _location = await location.getLocation();
-        // print(' Location' +
-        //     _location.latitude.toString() +
-        //     " " +
-        //     _location.longitude.toString());
-        location.onLocationChanged.listen((LocationData currentLocation) {
-          // ignore: avoid_print
-          print(' Location' +
-              currentLocation.latitude.toString() +
-              " " +
-              currentLocation.longitude.toString());
-          // Use current location
-        });
-        //
+        _location = await location.getLocation();
+        // ignore: avoid_print
+        print(' Location' +
+            _location.latitude.toString() +
+            " " +
+            _location.longitude.toString());
+        // location.onLocationChanged.listen((LocationData currentLocation) {
+        //   // ignore: avoid_print
+        //   print(' Location' +
+        //       currentLocation.latitude.toString() +
+        //       " " +
+        //       currentLocation.longitude.toString());
+        //   // Use current location
+        // });
+        // //
       } else {
         _permissionGranted = await location.requestPermission();
         if (_permissionGranted == PermissionStatus.granted) {
@@ -226,6 +318,12 @@ class _AfterTestState extends State<AfterTest> {
         SystemNavigator.pop();
       }
     }
+  }
+
+  // ignore: unused_element
+  Future<void> _goToThelake() async {
+    final GoogleMapController controller = await _controller.future;
+    controller.animateCamera(CameraUpdate.newCameraPosition(_kGooglePlex));
   }
 }
 

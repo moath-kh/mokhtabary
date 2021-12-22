@@ -116,6 +116,8 @@ class _PageHomeState extends State<PageHome> {
                               // ignore: avoid_print
                               print(
                                   'our user is  ====================== ${value.user!.uid}');
+                              // ignore: avoid_print
+                              print('our value is  ===== $value');
                               FirebaseFirestore.instance
                                   .collection('patint')
                                   .doc(value.user!.uid.toString())
@@ -145,6 +147,8 @@ class _PageHomeState extends State<PageHome> {
                                 print(value.data());
                               });
                             }).catchError((e) {
+                              // ignore: avoid_print
+                              print('there is signin error $e');
                               setState(() {
                                 //   print(e.toString());
                                 Fluttertoast.showToast(

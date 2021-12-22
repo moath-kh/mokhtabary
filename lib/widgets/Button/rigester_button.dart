@@ -5,6 +5,7 @@ class RigsterButton extends StatelessWidget {
   RigsterButton(
       {Key? key,
       this.scure = false,
+      this.onsave,
       required this.onClick,
       required this.onEmpty,
       required this.titlle,
@@ -19,6 +20,7 @@ class RigsterButton extends StatelessWidget {
   final TextInputType bord;
   final void Function(String)? onClick;
   final void Function(String)? onsubmit;
+  void Function(String?)? onsave;
   final String? Function(String?) onEmpty;
   final bool scure;
   final IconData? sicon;
@@ -36,6 +38,7 @@ class RigsterButton extends StatelessWidget {
         keyboardType: bord,
         obscureText: scure,
         onChanged: onClick,
+        onSaved: onsave,
         decoration: InputDecoration(
           prefixIcon: icon,
           suffixIcon: IconButton(
