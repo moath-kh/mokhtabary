@@ -12,7 +12,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:location/location.dart';
 // ignore: unused_import
 import 'package:mokhtabary/Language/generated/key-lang.dart';
-import 'package:mokhtabary/services/location_service.dart';
 import 'package:mokhtabary/widgets/Button/my_button.dart';
 import 'package:mokhtabary/widgets/CArdS/delivery_card.dart';
 import 'package:mokhtabary/widgets/CArdS/price_card.dart';
@@ -34,7 +33,9 @@ class _AfterTestState extends State<AfterTest> {
   late String name;
   late String uid;
   late String age;
-  final TextEditingController _searchcontroller = TextEditingController();
+  // ignore: prefer_collection_literals
+  final Set<Marker> _markers = Set<Marker>();
+  List<LatLng> polyongLatLngs = <LatLng>[];
   String error = '';
   bool isPassword = true;
   bool loading = false;
@@ -86,6 +87,16 @@ class _AfterTestState extends State<AfterTest> {
   void initState() {
     super.initState();
     checklocation();
+    _setMarker(const LatLng(30.194933, 35.737234));
+  }
+
+  void _setMarker(LatLng point) {
+    setState(() {
+      _markers.add(Marker(
+        markerId: const MarkerId('marker'),
+        position: point,
+      ));
+    });
   }
 
   @override
@@ -103,34 +114,10 @@ class _AfterTestState extends State<AfterTest> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Row(
-              children: [
-                Expanded(
-                    child: TextFormField(
-                  controller: _searchcontroller,
-                  textCapitalization: TextCapitalization.words,
-                  decoration: const InputDecoration(hintText: 'Search bu City'),
-                  onChanged: (value) {
-                    // _searchcontroller.text = value;
-                    // ignore: avoid_print
-                    print(value);
-                  },
-                )),
-                IconButton(
-                    onPressed: () {
-                      LocationServiceMe().getplace(_searchcontroller.text);
-                    },
-                    icon: const Icon(Icons.search))
-              ],
-            ),
             SizedBox(
               width: double.infinity,
               height: 300,
               child: GoogleMap(
-                // liteModeEnabled: true,
-                // cameraTargetBounds: CameraTargetBounds.unbounded,
-                // buildingsEnabled: true,
-                // indoorViewEnabled: true,
                 mapType: MapType.normal,
                 initialCameraPosition: _kGooglePlex,
                 onMapCreated: (GoogleMapController controller) {
@@ -321,9 +308,13 @@ class _AfterTestState extends State<AfterTest> {
   }
 
   // ignore: unused_element
-  Future<void> _goToThelake() async {
+  Future<void> _goToThelake(Map<String, dynamic> place) async {
+    final double lat = place['geometry']['location']['lat'];
+    final double lng = place['geometry']['location']['lng'];
     final GoogleMapController controller = await _controller.future;
-    controller.animateCamera(CameraUpdate.newCameraPosition(_kGooglePlex));
+    controller.animateCamera(CameraUpdate.newCameraPosition(
+        CameraPosition(target: LatLng(lat, lng))));
+    _setMarker(LatLng(lat, lng));
   }
 }
 

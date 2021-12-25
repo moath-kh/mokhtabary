@@ -4,5 +4,6 @@ class PathImage {
   static const String request = 'assets/images/requestt.png';
   static const String dollar = 'assets/images/dollare.jpg';
   static const String saudia = 'assets/images/saudi.png';
+  static const String mokhtabary = 'assets/images/mokhtabary.jpg';
   static const String unitedStates = 'assets/images/united-states.png';
 }

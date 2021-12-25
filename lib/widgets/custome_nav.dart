@@ -15,7 +15,7 @@ class CustomNavigationbar extends StatelessWidget {
       backgroundColor: Colors.grey.shade50,
       items: const [
         Icon(Icons.home),
-        Icon(Icons.chat),
+        Icon(Icons.menu),
       ],
       onTap: (value) {
         onClick(value);

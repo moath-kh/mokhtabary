@@ -10,7 +10,7 @@ import 'package:mokhtabary/views/laps_creen.dart';
 import 'package:mokhtabary/views/navigation_page.dart';
 import 'package:mokhtabary/views/patient_screen.dart';
 import 'package:mokhtabary/views/location_screen.dart';
-import 'package:mokhtabary/views/reaust_screen.dart';
+import 'package:mokhtabary/views/recepion_screen.dart';
 import 'package:mokhtabary/views/rigester_screen.dart';
 import 'package:mokhtabary/views/splash_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';

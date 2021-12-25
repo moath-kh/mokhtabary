@@ -55,7 +55,7 @@ class _PatientSCreenState extends State<PatientSCreen> {
         centerTitle: true,
         elevation: 2,
       ),
-      drawer: const ComponentDrawer(),
+      //drawer: const ComponentDrawer(),
       body: SingleChildScrollView(
         physics: const ScrollPhysics(),
         child: Column(
