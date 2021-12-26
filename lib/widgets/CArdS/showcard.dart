@@ -33,6 +33,7 @@ class ShowCard extends StatelessWidget {
               ),
               Text(
                 title,
+                maxLines: 2,
                 style: GoogleFonts.aBeeZee(
                   color: Colors.red,
                   fontSize: 15,

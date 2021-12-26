@@ -12,6 +12,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:location/location.dart';
 // ignore: unused_import
 import 'package:mokhtabary/Language/generated/key-lang.dart';
+import 'package:mokhtabary/views/send_email_screen.dart';
 import 'package:mokhtabary/widgets/Button/my_button.dart';
 import 'package:mokhtabary/widgets/CArdS/delivery_card.dart';
 import 'package:mokhtabary/widgets/CArdS/price_card.dart';
@@ -35,6 +36,10 @@ class _AfterRerustScreenState extends State<AfterRerustScreen> {
   late String age;
   String error = '';
   bool isPassword = true;
+  // ignore: prefer_typing_uninitialized_variables
+  var   latitude;
+  // ignore: prefer_typing_uninitialized_variables
+  var   longitude;
   bool loading = false;
   var formkey = GlobalKey<FormState>();
   static CameraPosition get _kGooglePlex => const CameraPosition(
@@ -105,6 +110,11 @@ class _AfterRerustScreenState extends State<AfterRerustScreen> {
                 // cameraTargetBounds: CameraTargetBounds.unbounded,
                 // buildingsEnabled: true,
                 // indoorViewEnabled: true,
+                 onCameraMove: (object) => {
+          setState(() {
+            latitude = object.target.latitude;
+            longitude = object.target.longitude;
+          })},
                 mapType: MapType.normal,
                 initialCameraPosition: _kGooglePlex,
                 onMapCreated: (GoogleMapController controller) {
@@ -154,9 +164,11 @@ class _AfterRerustScreenState extends State<AfterRerustScreen> {
                   const DeliveryCard(),
                   const SizedBox(height: 10),
                   Mybuuton(
-                      tittle: KeyLang.submit.tr(),
+                      tittle: KeyLang.send.tr(),
                       color: Colors.blue,
-                      onPressed: () {})
+                      onPressed: () {
+                        Navigator.pushNamed(context, EmailScreen.screenRoute);
+                      })
                 ],
               ),
             )

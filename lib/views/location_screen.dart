@@ -32,7 +32,12 @@ class _AfterTestState extends State<AfterTest> {
   late String phone;
   late String name;
   late String uid;
+  late String email;
   late String age;
+  // ignore: prefer_typing_uninitialized_variables
+  var latitude;
+  // ignore: prefer_typing_uninitialized_variables
+  var longitude;
   // ignore: prefer_collection_literals
   final Set<Marker> _markers = Set<Marker>();
   List<LatLng> polyongLatLngs = <LatLng>[];
@@ -118,6 +123,12 @@ class _AfterTestState extends State<AfterTest> {
               width: double.infinity,
               height: 300,
               child: GoogleMap(
+                onCameraMove: (object) => {
+                  setState(() {
+                    latitude = object.target.latitude;
+                    longitude = object.target.longitude;
+                  })
+                },
                 mapType: MapType.normal,
                 initialCameraPosition: _kGooglePlex,
                 onMapCreated: (GoogleMapController controller) {
@@ -155,6 +166,19 @@ class _AfterTestState extends State<AfterTest> {
                       },
                       titlle: KeyLang.username.tr(),
                       icon: const Icon(Icons.person),
+                    ),
+                    RigsterButton(
+                      titlle: KeyLang.email.tr(),
+                      onEmpty: (value) {
+                        if (value!.isEmpty) {
+                          return KeyLang.pemail.tr();
+                        }
+                        return null;
+                      },
+                      icon: const Icon(Icons.email),
+                      onClick: (value) {
+                        email = value;
+                      },
                     ),
                     //age
                     RigsterButton(
@@ -267,6 +291,7 @@ class _AfterTestState extends State<AfterTest> {
             _location.latitude.toString() +
             " " +
             _location.longitude.toString());
+
         // location.onLocationChanged.listen((LocationData currentLocation) {
         //   // ignore: avoid_print
         //   print(' Location' +
@@ -317,8 +342,6 @@ class _AfterTestState extends State<AfterTest> {
     _setMarker(LatLng(lat, lng));
   }
 }
-
-
 
 
 

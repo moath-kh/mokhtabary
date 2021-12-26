@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mokhtabary/views/patient_screen.dart';
-import 'package:mokhtabary/views/chat_screen.dart';
+import 'package:mokhtabary/views/drawer_screen.dart';
 import 'package:mokhtabary/widgets/custome_nav.dart';
 
 class NavScreen extends StatefulWidget {

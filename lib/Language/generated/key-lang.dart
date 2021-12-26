@@ -31,7 +31,10 @@ class KeyLang {
   static String b12 = 'b12';
   static String covid = 'covid';
   static String d = 'd';
+  static String cancle = 'cancle';
+  static String sure = 'sure';
   static String ur = 'ur';
+  static String send = 'sendemail';
   static String ephone = 'ephone';
   static String age = 'age';
   static String page = 'page';

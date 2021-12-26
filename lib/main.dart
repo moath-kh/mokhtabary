@@ -12,6 +12,7 @@ import 'package:mokhtabary/views/patient_screen.dart';
 import 'package:mokhtabary/views/location_screen.dart';
 import 'package:mokhtabary/views/recepion_screen.dart';
 import 'package:mokhtabary/views/rigester_screen.dart';
+import 'package:mokhtabary/views/send_email_screen.dart';
 import 'package:mokhtabary/views/splash_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:mokhtabary/views/test_screen.dart';
@@ -67,6 +68,7 @@ class MyApp extends StatelessWidget {
         LoginScreen.screenRoute: (context) => const LoginScreen(),
         Rigsteraition.screenRoute: (context) => const Rigsteraition(),
         PatientSCreen.screenRoute: (context) => const PatientSCreen(),
+        EmailScreen.screenRoute: (context) => const EmailScreen(),
         TestScreen.screenRoute: (context) => const TestScreen(),
         LapSCreen.screenRoute: (context) => const LapSCreen(),
         AfterRerustScreen.screenRoute: (context) => const AfterRerustScreen(

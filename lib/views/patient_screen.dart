@@ -6,7 +6,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:mokhtabary/Language/generated/key-lang.dart';
 import 'package:mokhtabary/utils/path_image.dart';
 import 'package:mokhtabary/views/test_screen.dart';
-import 'package:mokhtabary/widgets/Drawer/drawer.dart';
 // ignore: duplicate_import
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:mokhtabary/widgets/CArdS/cards_lap.dart';
@@ -76,14 +75,14 @@ class _PatientSCreenState extends State<PatientSCreen> {
             Column(
               children: [
                 CardLaps(
-                  tittle: 'Med Lap',
+                  tittle: 'Med Lab',
                   image: PathImage.medlap,
                   cardClick: () {
                     Navigator.pushNamed(context, TestScreen.screenRoute);
                   },
                 ),
-                CardLaps(tittle: 'Med Lap', image: PathImage.medlap),
-                CardLaps(tittle: 'Med Lap', image: PathImage.medlap),
+                CardLaps(tittle: 'Alfa Lab', image: PathImage.alfa),
+                CardLaps(tittle: 'Mega Lab', image: PathImage.mega),
               ],
             ),
           ],

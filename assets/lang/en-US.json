@@ -30,7 +30,7 @@
     "covid": "Covid-19",
     "d": "Vitamin D",
     "age": " Age",
-    "phone": "Number Phone",
+    "phone": "Phone",
     "ur": "Urinalysis Test",
     "ephone": "Enter a 10-digit Number Phone",
     "wrong": "The Email or Pssword is wrong",
@@ -38,7 +38,10 @@
     "wrongr": "Make sure the information entered is correct",
     "price": "Price  :",
     "jd": "JD",
+    "cancle": "Cancle",
+    "sure": "OK",
     "del": "Delivery : ",
     "req": "The Request has been send ",
+    "sendemail": "Send Result",
     "submit": "Submit"
 }
