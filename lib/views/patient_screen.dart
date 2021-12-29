@@ -75,14 +75,26 @@ class _PatientSCreenState extends State<PatientSCreen> {
             Column(
               children: [
                 CardLaps(
-                  tittle: 'Med Lab',
+                  tittle: 'True Lab',
                   image: PathImage.medlap,
                   cardClick: () {
                     Navigator.pushNamed(context, TestScreen.screenRoute);
                   },
                 ),
-                CardLaps(tittle: 'Alfa Lab', image: PathImage.alfa),
-                CardLaps(tittle: 'Mega Lab', image: PathImage.mega),
+                CardLaps(
+                  tittle: 'Ghaith Lab',
+                  image: PathImage.alfa,
+                  cardClick: () {
+                    Navigator.pushNamed(context, TestScreen.screenRoute);
+                  },
+                ),
+                CardLaps(
+                  tittle: 'Mega Lab',
+                  image: PathImage.mega,
+                  cardClick: () {
+                    Navigator.pushNamed(context, TestScreen.screenRoute);
+                  },
+                ),
               ],
             ),
           ],

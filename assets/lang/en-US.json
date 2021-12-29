@@ -43,5 +43,6 @@
     "del": "Delivery : ",
     "req": "The Request has been send ",
     "sendemail": "Send Result",
-    "submit": "Submit"
+    "submit": "Submit",
+    "about": "My laboratory application is one of the specialized applications for laboratory medical examinations that allows users to request the examination service from home with ease and ease.There is a list of laboratories that allows the user to choose the laboratory that suits him, then the user finds a list of medical laboratory tests, which is the first interface for users, and then implements the test request from home."
 }

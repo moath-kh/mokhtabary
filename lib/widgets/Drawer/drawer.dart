@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:mokhtabary/Language/generated/key-lang.dart';
 import 'package:mokhtabary/utils/path_image.dart';
+import 'package:mokhtabary/views/about_screen.dart';
 import 'package:mokhtabary/views/home.dart';
 import 'package:mokhtabary/views/navigation_page.dart';
 import 'custome_list.dart';
@@ -80,7 +81,9 @@ class ComponentDrawer extends StatelessWidget {
               CustomeTitle(
                 title: KeyLang.type.tr(),
                 icon: Icons.help,
-                onClick: () {},
+                onClick: () {
+                  Navigator.pushNamed(context, AboutScreen.screenRoute);
+                },
               ),
               CustomeTitle(
                 title: KeyLang.logout.tr(),

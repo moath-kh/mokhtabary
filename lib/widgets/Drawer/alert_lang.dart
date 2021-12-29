@@ -25,7 +25,7 @@ class ALertDialogDrawer extends StatelessWidget {
             Expanded(
               child: FlagDrawer(
                 title: KeyLang.arabic,
-                flag: PathImage.saudia,
+                flag: PathImage.jordan,
                 lang: ConfigLanguage.AR_LOCALE,
               ),
             ),

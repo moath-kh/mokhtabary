@@ -46,4 +46,5 @@ class KeyLang {
   static String del = 'del';
   static String submit = 'submit';
   static String price = 'price';
+  static String about = 'about';
 }

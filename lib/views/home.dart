@@ -109,8 +109,8 @@ class _PageHomeState extends State<PageHome> {
                           try {
                             _auth
                                 .signInWithEmailAndPassword(
-                              email: email.trim(),
-                              password: password.trim(),
+                              email: email.toString().trim(),
+                              password: password.toString().trim(),
                             )
                                 .then((value) {
                               // ignore: avoid_print

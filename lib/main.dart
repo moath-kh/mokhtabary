@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:mokhtabary/Language/Config/config-lang.dart';
 import 'package:mokhtabary/theme/custome_theme.dart';
+import 'package:mokhtabary/views/about_screen.dart';
 import 'package:mokhtabary/views/afterlogin_screen.dart';
 import 'package:mokhtabary/views/controller/auth.dart';
 import 'package:mokhtabary/views/home.dart';
@@ -71,6 +72,7 @@ class MyApp extends StatelessWidget {
         EmailScreen.screenRoute: (context) => const EmailScreen(),
         TestScreen.screenRoute: (context) => const TestScreen(),
         LapSCreen.screenRoute: (context) => const LapSCreen(),
+        AboutScreen.screenRoute: (context) => const AboutScreen(),
         AfterRerustScreen.screenRoute: (context) => const AfterRerustScreen(
               tittle: '',
             ),
