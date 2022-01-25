@@ -243,6 +243,7 @@ class _AfterTestState extends State<AfterTest> {
                                     'name': name,
                                     'phone': phone,
                                     'age': age,
+                                    'email': email,
                                     'date': Timestamp.fromDate(
                                         DateTime.now().toLocal()),
                                     'typeTest': widget.tittle,

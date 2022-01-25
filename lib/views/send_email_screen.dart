@@ -48,7 +48,7 @@ class _EmailScreenState extends State<EmailScreen> {
                 buildtextfaild(
                     tittle: 'Message',
                     controller: controllermesseage,
-                    maxlines: 15),
+                    maxlines: 8),
                 const SizedBox(
                   height: 16,
                 ),

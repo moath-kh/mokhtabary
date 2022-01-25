@@ -37,9 +37,9 @@ class _AfterRerustScreenState extends State<AfterRerustScreen> {
   String error = '';
   bool isPassword = true;
   // ignore: prefer_typing_uninitialized_variables
-  var   latitude;
+  var latitude;
   // ignore: prefer_typing_uninitialized_variables
-  var   longitude;
+  var longitude;
   bool loading = false;
   var formkey = GlobalKey<FormState>();
   static CameraPosition get _kGooglePlex => const CameraPosition(
@@ -110,11 +110,12 @@ class _AfterRerustScreenState extends State<AfterRerustScreen> {
                 // cameraTargetBounds: CameraTargetBounds.unbounded,
                 // buildingsEnabled: true,
                 // indoorViewEnabled: true,
-                 onCameraMove: (object) => {
-          setState(() {
-            latitude = object.target.latitude;
-            longitude = object.target.longitude;
-          })},
+                onCameraMove: (object) => {
+                  setState(() {
+                    latitude = object.target.latitude;
+                    longitude = object.target.longitude;
+                  })
+                },
                 mapType: MapType.normal,
                 initialCameraPosition: _kGooglePlex,
                 onMapCreated: (GoogleMapController controller) {
@@ -137,6 +138,11 @@ class _AfterRerustScreenState extends State<AfterRerustScreen> {
                       icon: Icons.person,
                       title: data['name'],
                       name: KeyLang.username.tr()),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  ShowCard(
+                      icon: Icons.email, title: data['email'], name: 'Email'),
                   const SizedBox(
                     height: 10,
                   ),
