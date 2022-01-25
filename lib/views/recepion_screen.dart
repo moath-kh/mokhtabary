@@ -30,6 +30,7 @@ class AfterRerustScreen extends StatefulWidget {
 class _AfterRerustScreenState extends State<AfterRerustScreen> {
   final Completer<GoogleMapController> _controller = Completer();
   // ignore: prefer_const_constructors
+  final Set<Marker> _markers = Set<Marker>();
   late String phone;
   late String name;
   late String uid;
@@ -46,18 +47,22 @@ class _AfterRerustScreenState extends State<AfterRerustScreen> {
         target: LatLng(30.194933, 35.737234),
         zoom: 14.4746,
       );
-  // static final Marker _kLakemarker = Marker(
-  //     markerId: MarkerId('_lakemarkerket'),
-  //     infoWindow: InfoWindow(title: 'lake pexl'),
-  //     icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueBlue),
-  //     position: LatLng(30.194933, 35.737234));
-  // static final Marker _googleplexmarker = Marker(
-  //   rotation: 1,
-  //   icon: BitmapDescriptor.defaultMarker,
-  //   markerId: MarkerId('Your Location'),
-  //   infoWindow: InfoWindow(title: 'Med Lap'),
-  //   position: LatLng(30.1957514, 35.7360254),
-  // );
+  List<Marker> markers = [
+    const Marker(
+      rotation: 1,
+      markerId: MarkerId('Your Location'),
+      infoWindow: InfoWindow(title: 'Med Lap'),
+      position: LatLng(30.1957514, 35.7360254),
+    ),
+    //marker med lap
+    const Marker(
+      markerId: MarkerId(' Location 2 '),
+      infoWindow: InfoWindow(
+        title: 'Med Lap',
+      ),
+      position: LatLng(30.585164, 36.238414),
+    ),
+  ];
 
   late bool _serviceEnabled;
   late PermissionStatus _permissionGranted;
@@ -67,6 +72,16 @@ class _AfterRerustScreenState extends State<AfterRerustScreen> {
   void initState() {
     super.initState();
     checklocation();
+    _setMarker(const LatLng(30.194933, 35.737234));
+  }
+
+  void _setMarker(LatLng point) {
+    setState(() {
+      _markers.add(Marker(
+        markerId: const MarkerId('marker'),
+        position: point,
+      ));
+    });
   }
 
   @override
@@ -106,6 +121,7 @@ class _AfterRerustScreenState extends State<AfterRerustScreen> {
               width: double.infinity,
               height: 300,
               child: GoogleMap(
+                markers: markers.toSet(),
                 // liteModeEnabled: true,
                 // cameraTargetBounds: CameraTargetBounds.unbounded,
                 // buildingsEnabled: true,
@@ -123,11 +139,6 @@ class _AfterRerustScreenState extends State<AfterRerustScreen> {
                 },
               ),
             ),
-            // FloatingActionButton.extended(
-            //   onPressed: _goToThelake,
-            //   label: Text('data'),
-            //   icon: Icon(Icons.directions_boat),
-            // ),
             SingleChildScrollView(
               child: Column(
                 children: [
@@ -243,3 +254,4 @@ class _AfterRerustScreenState extends State<AfterRerustScreen> {
     controller.animateCamera(CameraUpdate.newCameraPosition(_kGooglePlex));
   }
 }
+//data['location'].latitude

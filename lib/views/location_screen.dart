@@ -91,6 +91,7 @@ class _AfterTestState extends State<AfterTest> {
   @override
   void initState() {
     super.initState();
+    storeUSerLocation();
     checklocation();
     _setMarker(const LatLng(30.194933, 35.737234));
   }
@@ -234,40 +235,7 @@ class _AfterTestState extends State<AfterTest> {
                         onPressed: buttonPressed
                             ? null
                             : () {
-                                final userId =
-                                    FirebaseAuth.instance.currentUser!.uid;
-                                if (formkey.currentState!.validate()) {
-                                  FirebaseFirestore.instance
-                                      .collection('request')
-                                      .add({
-                                    'name': name,
-                                    'phone': phone,
-                                    'age': age,
-                                    'email': email,
-                                    'date': Timestamp.fromDate(
-                                        DateTime.now().toLocal()),
-                                    'typeTest': widget.tittle,
-                                    'userId': userId
-                                  }).then((value) {
-                                    setState(() {
-                                      buttonPressed = true;
-                                      Fluttertoast.showToast(
-                                          msg: KeyLang.requst.tr(),
-                                          toastLength: Toast.LENGTH_SHORT,
-                                          gravity: ToastGravity.CENTER,
-                                          timeInSecForIosWeb: 1,
-                                          backgroundColor: Colors.red,
-                                          textColor: Colors.white,
-                                          fontSize: 16.0);
-                                    });
-                                    Future.delayed(const Duration(minutes: 30),
-                                        () {
-                                      setState(() {
-                                        buttonPressed = false;
-                                      });
-                                    });
-                                  });
-                                }
+                                storeUSerLocation();
                               })
                   ],
                 ),
@@ -277,6 +245,55 @@ class _AfterTestState extends State<AfterTest> {
         ),
       ),
     );
+  }
+
+  storeUSerLocation() async {
+    // ignore: unnecessary_new
+    Location location = new Location();
+    _location = await location.getLocation();
+
+    final userId = FirebaseAuth.instance.currentUser!.uid;
+    if (formkey.currentState!.validate()) {
+      FirebaseFirestore.instance.collection('request').add({
+        'name': name,
+        'phone': phone,
+        'age': age,
+        'email': email,
+        'location': GeoPoint(_location.latitude!, _location.longitude!),
+        'date': Timestamp.fromDate(DateTime.now().toLocal()),
+        'typeTest': widget.tittle,
+        'userId': userId
+      }).then((value) {
+        setState(() {
+          buttonPressed = true;
+          Fluttertoast.showToast(
+              msg: KeyLang.requst.tr(),
+              toastLength: Toast.LENGTH_SHORT,
+              gravity: ToastGravity.CENTER,
+              timeInSecForIosWeb: 1,
+              backgroundColor: Colors.red,
+              textColor: Colors.white,
+              fontSize: 16.0);
+        });
+        Future.delayed(const Duration(minutes: 30), () {
+          setState(() {
+            buttonPressed = false;
+          });
+        });
+      });
+    }
+
+    // ignore: unnecessary_new
+    //  FirebaseFirestore.instance
+    //       .collection('request')
+    //       .add({'location': GeoPoint(_location.latitude!, _location.longitude!)});
+    // location.onLocationChanged.listen((LocationData currentLocation) {
+    //    final userId =
+    //                                 FirebaseAuth.instance.currentUser!.uid;
+    //   FirebaseFirestore.instance.collection('request').doc(userId).set({
+    //     'location':GeoPoint(currentLocation.latitude!, currentLocation.longitude!)
+    //   });
+    // });
   }
 
   Future<void> checklocation() async {
@@ -542,3 +559,41 @@ class _AfterTestState extends State<AfterTest> {
 //         ),
 //       ),
     
+
+
+
+
+    /** final userId =
+                                    FirebaseAuth.instance.currentUser!.uid;
+                                if (formkey.currentState!.validate()) {
+                                  FirebaseFirestore.instance
+                                      .collection('request')
+                                      .add({
+                                    'name': name,
+                                    'phone': phone,
+                                    'age': age,
+                                    'email': email,
+                                    'date': Timestamp.fromDate(
+                                        DateTime.now().toLocal()),
+                                    'typeTest': widget.tittle,
+                                    'userId': userId
+                                  }).then((value) {
+                                    setState(() {
+                                      buttonPressed = true;
+                                      Fluttertoast.showToast(
+                                          msg: KeyLang.requst.tr(),
+                                          toastLength: Toast.LENGTH_SHORT,
+                                          gravity: ToastGravity.CENTER,
+                                          timeInSecForIosWeb: 1,
+                                          backgroundColor: Colors.red,
+                                          textColor: Colors.white,
+                                          fontSize: 16.0);
+                                    });
+                                    Future.delayed(const Duration(minutes: 30),
+                                        () {
+                                      setState(() {
+                                        buttonPressed = false;
+                                      });
+                                    });
+                                  });
+                                } */
